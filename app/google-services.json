@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "587170830974",
+    "project_id": "ladiesapp-36262",
+    "storage_bucket": "ladiesapp-36262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:587170830974:android:ff7965710327bdb963962f",
+        "android_client_info": {
+          "package_name": "com.example.psm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "587170830974-14r5la6ahdflhej1cn65r9pb4k4bjekp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMsxpzLuceIgtC4Zk0VTpXcqoi3Lajovc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "587170830974-14r5la6ahdflhej1cn65r9pb4k4bjekp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
