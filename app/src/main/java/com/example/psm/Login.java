@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
                         Toast.makeText(Login.this, "Congrats You're Already Sign in", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Login.this, Homepage.class);  //panggilPage
                         startActivity(intent);
-                        finish();
+                        finish(); 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
