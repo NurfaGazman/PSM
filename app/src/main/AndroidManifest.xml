@@ -27,14 +27,18 @@
         </activity>
         <activity
             android:name=".ManagedProfile"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".Homepage"> <!-- setbackbutton -->>
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value=""
+                />
+
         </activity>
         <activity
             android:name=".Homepage"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".Login">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -48,6 +52,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+
+
         <activity
             android:name=".Login"
             android:exported="true">

@@ -42,14 +42,14 @@ public class Register extends AppCompatActivity {
     //declared setiap activity kena ada
     private RequestQueue requestQueue;
     private SweetAlert swal;
-    //
+
 
     private ActivityRegister2Binding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register2);
+
         binding = ActivityRegister2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
@@ -94,7 +94,7 @@ public class Register extends AppCompatActivity {
             Log.d("something" ,"test");
 
             RequestController requestController = new RequestController(Request.Method.POST,
-                   "/api/User", body,
+                   "/register", body,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {   //success

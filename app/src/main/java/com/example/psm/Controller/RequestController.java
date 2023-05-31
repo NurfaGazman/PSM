@@ -31,7 +31,13 @@ public class RequestController extends StringRequest {
     public RequestController(int method, String url, JSONObject body, Response.Listener<String> listener, @Nullable Response.ErrorListener errorListener) {
         super(method, serverUrl + url, listener, errorListener);
         this.body = body;
+    }
 
+//wajib letak token tidak user xleh masuk
+    public RequestController(int method, String url, JSONObject body,String token, Response.Listener<String> listener, @Nullable Response.ErrorListener errorListener) {
+        super(method, serverUrl + url, listener, errorListener);
+        this.body = body;
+        this.token = token;
     }
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
@@ -43,7 +49,7 @@ public class RequestController extends StringRequest {
         }
 
         if (!token.isEmpty())
-            headers.put("cookie","token=" + token);
+            headers.put("Cookie","token=" + token);
         //headers.put("jwtT",jwt.getJwtToken());
         //headers.put("jwtP",jwt.getJwtPayload());
         //headers.put("uid",jwt.getUserId());

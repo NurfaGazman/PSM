@@ -83,50 +83,32 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/BloodGp">
+        app:layout_constraintTop_toBottomOf="@+id/BloodGp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <RadioButton
+            android:id="@+id/BloodO"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:text="O" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/BloodB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B" />
 
-                <RadioButton
-                    android:id="@+id/Blood_a"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:text="Blood A" />
+        <RadioButton
+            android:id="@+id/BloodAb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AB" />
 
-                <RadioButton
-                    android:id="@+id/Blood_B"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:text="Blood B" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RadioButton
-                    android:id="@+id/blood_ab"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:text="Blood AB" />
-
-                <RadioButton
-                    android:id="@+id/blood_o"
-                    android:layout_width="120dp"
-                    android:layout_height="30dp"
-                    android:text="Blood O" />
-            </LinearLayout>
-
-        </LinearLayout>
+        <RadioButton
+            android:id="@+id/BloodA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A" />
 
     </RadioGroup>
 
@@ -175,19 +157,20 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:text="Medical ID"
-        app:layout_constraintTop_toBottomOf="@+id/address"
-        tools:layout_editor_absoluteX="74dp" />
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/address" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -199,9 +182,16 @@
         android:text="Save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frgSwal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout="@layout/empty"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

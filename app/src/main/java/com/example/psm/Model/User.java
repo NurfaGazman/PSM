@@ -10,7 +10,7 @@ public class User {
     private String password;
     private String address;
     private String blood_gp;
-    private Date birth_date;
+    private String birth_date;
     private String medical_id;
 
     public int getUser_Id() {
@@ -61,11 +61,11 @@ public class User {
         this.blood_gp = blood_gp;
     }
 
-    public Date getBirth_date() {
+    public String getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(String birth_date) {
         this.birth_date = birth_date;
     }
 
@@ -79,13 +79,14 @@ public class User {
 
 //contractor USER
     public User(){
+
         user_Id = -1;
         email = "";
         full_name = "";
         password = "";
         blood_gp = "";
         address = "";
-        birth_date = new Date();
+        birth_date = "";
         medical_id = "";
     }
 }
