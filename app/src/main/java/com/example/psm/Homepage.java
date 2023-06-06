@@ -1,13 +1,22 @@
 package com.example.psm;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.psm.databinding.ActivityHomepageBinding;
 import com.example.psm.databinding.ActivityRegister2Binding;
+
+import java.util.zip.Inflater;
 
 public class Homepage extends AppCompatActivity {
 
@@ -37,8 +46,14 @@ public class Homepage extends AppCompatActivity {
 
 
         binding.btnProfile.setOnClickListener(this::goToProfile);
-
+        binding.btnContact.setOnClickListener(this::goToContact);
     }
+
+    public void goToContact(View view) {
+        Intent intent = new Intent(Homepage.this, ManagedContact.class);  //panggilPage
+        startActivity(intent);
+    }
+
 
     //panggil link button yang tuk dilinkkan
     public void goToProfile(View view){
@@ -46,4 +61,33 @@ public class Homepage extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+    //logout btn
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.btnLogout:
+
+
+                SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sharedPreferences.edit();
+                edt.putString("token","");
+                edt.apply();
+
+                Intent intent = new Intent(getApplication(), Login.class);
+                startActivity(intent);
+
+                break;
+        }
+        return  true;
+    }
 }

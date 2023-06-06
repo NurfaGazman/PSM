@@ -120,7 +120,7 @@ public class ManagedProfile extends AppCompatActivity {
         binding.address.setText(currentUser.getAddress());
         binding.dateBirth.setText(currentUser.getBirth_date());
         binding.editTextTextPersonName2.setText(currentUser.getMedical_id());
-        
+
 
         binding.radioGroup.clearCheck();
         if(currentUser.getBlood_gp().equals("A"))
