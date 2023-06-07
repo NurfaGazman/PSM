@@ -91,8 +91,8 @@ public class Register extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            Log.d("something" ,"test");
-
+            //Log.d("something" ,"test");
+            //1function besar ambik dari ()
             RequestController requestController = new RequestController(Request.Method.POST,
                    "/register", body,
                     new Response.Listener<String>() {
@@ -115,7 +115,7 @@ public class Register extends AppCompatActivity {
 
                         }
                     });
-
+                //sampai sini
                     requestQueue.add(requestController);
 
         }

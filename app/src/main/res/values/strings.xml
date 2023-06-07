@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">PSM</string>
     <string-array name="message">
+        <item>None</item>
         <item>Help me!</item>
         <item>Hi, i need your help! Please reach this place.</item>
         <item>Iam in trouble, can you help?</item>

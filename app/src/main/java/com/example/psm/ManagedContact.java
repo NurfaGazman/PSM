@@ -4,20 +4,32 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaSession2;
 import android.os.Bundle;
+import android.view.View;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
 import com.example.psm.Controller.ContactController;
+import com.example.psm.Controller.RequestController;
 import com.example.psm.Controller.SweetAlert;
 import com.example.psm.Model.Contact;
 import com.example.psm.Model.User;
 import com.example.psm.databinding.ActivityManagedContactBinding;
 import com.example.psm.databinding.ActivityManagedProfileBinding;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Vector;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ManagedContact extends AppCompatActivity {
 
@@ -46,12 +58,10 @@ public class ManagedContact extends AppCompatActivity {
         token = sharedPreferences.getString("token",null);
 
         currentUser = new User();
-
         contact = new Vector<>();
 
-
-        contact.add(new Contact("Fathihah","013-4310199"));
-
+        binding.btnAddNo.setOnClickListener(this::fnContact);
+        //contact.add(new Contact("Fathihah","013-4310199"));
 
 
         contactController = new ContactController(getLayoutInflater(),contact);
@@ -61,4 +71,106 @@ public class ManagedContact extends AppCompatActivity {
     }
 
 
+    public void fnContact(View view) {
+        if (binding.insertName.getText().toString().isEmpty() ||
+                binding.insertcontact.getText().toString().isEmpty()
+        )
+        {
+            new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Please insert name")
+                    .setContentText("Please fill in all the field")
+                    .show();
+
+        }
+        else{
+            JSONObject body = new JSONObject();
+
+            try{
+
+                body.put("name",binding.insertName.getText().toString());
+                body.put("contact_no",binding.insertcontact.getText().toString());
+
+                //ambik user select
+                String sendMessage = binding.list.getSelectedItem().toString();
+                if(sendMessage.equals("None"))
+                    sendMessage = "";
+                body.put("message",sendMessage);
+
+
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            RequestController requestController = new RequestController(Request.Method.POST,
+                    "/api/Contact", body, token,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {   //success
+
+                            swal.show("Success","Valid", SweetAlertDialog.SUCCESS_TYPE);
+                            loadContact();
+                        }
+                    },
+
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) { //error
+                            swal.show("Failed","Invalid", SweetAlertDialog.ERROR_TYPE);
+                        }
+                    });
+                    requestQueue.add(requestController);
+        }
+
+
+    }
+
+    public void loadContact(){
+        RequestController requestController = new RequestController(Request.Method.GET,
+                "/api/Contact", null, token,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {   //success
+                        try {
+                           JSONArray jsonArray = new JSONArray(response);
+
+
+                        for(int i=0; i <jsonArray.length(); i ++){
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            Contact contactuser = new Contact();
+
+                            if(!jsonObject.isNull("contact_no"))
+                                contactuser.setContact_no(jsonObject.getString("contact_no"));
+
+                            if(!jsonObject.isNull("message"))
+                                contactuser.setMessage(jsonObject.getString("message"));
+
+                            if(!jsonObject.isNull("name"))
+                                contactuser.setName(jsonObject.getString("name"));
+
+                            contact.add(contactuser);
+
+                            contactController.notifyDataSetChanged();
+
+                        }
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                swal.show("Failed","Invalid update", SweetAlertDialog.ERROR_TYPE);
+            }
+        });
+        requestQueue.add(requestController);
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadContact();
+    }
 }

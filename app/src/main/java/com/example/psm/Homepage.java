@@ -47,21 +47,32 @@ public class Homepage extends AppCompatActivity {
 
         binding.btnProfile.setOnClickListener(this::goToProfile);
         binding.btnContact.setOnClickListener(this::goToContact);
+        binding.btnsetting.setOnClickListener(this::goToSetting);
+        binding.btnself.setOnClickListener(this::goToSelf);
     }
 
+
+
+    //panggil link button yang tuk dilinkkan
     public void goToContact(View view) {
         Intent intent = new Intent(Homepage.this, ManagedContact.class);  //panggilPage
         startActivity(intent);
     }
 
-
-    //panggil link button yang tuk dilinkkan
     public void goToProfile(View view){
         Intent intent = new Intent(Homepage.this, ManagedProfile.class);  //panggilPage
         startActivity(intent);
     }
 
+    public void goToSetting(View view){
+        Intent intent = new Intent(Homepage.this, Setting.class);  //panggilPage
+        startActivity(intent);
+    }
 
+    public void goToSelf(View view){
+        Intent intent = new Intent(Homepage.this, SelfLearn.class);  //panggilPage
+        startActivity(intent);
+    }
 
     //logout btn
 

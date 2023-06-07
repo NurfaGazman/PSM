@@ -119,6 +119,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:fontFamily="serif"
         android:text="Birth Date"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
@@ -140,6 +141,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Address"
+        android:fontFamily="serif"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/dateBirth" />
 
@@ -161,6 +163,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Medical ID"
+        android:fontFamily="serif"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/address" />
 
