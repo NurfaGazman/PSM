@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -31,13 +32,14 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Login extends AppCompatActivity {
     private RequestQueue requestQueue;
     private SweetAlert swal;
-
+    MediaPlayer mp;
+    private String audio;
     ActivityLoginBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -48,7 +50,63 @@ public class Login extends AppCompatActivity {
 
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
+        audio = sharedPreferences.getString("sound",null);
+
+        binding.btnSound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(mp != null){
+
+                    if(mp.isPlaying()){
+                        mp.release();
+                        mp = null;
+                        return;
+                    }
+                }
+                if(audio ==null){
+                    audio="";
+                }
+
+                if(audio.equals("Womenscream")){
+
+                    mp =  MediaPlayer.create(Login.this,R.raw.woman_scream);
+                    mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+                        @Override
+                        public void onPrepared(MediaPlayer mediaPlayer){
+                            mp.start();
+                        }
+                    });
+                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            mp.release();
+                        }
+                    });
+
+                } else if(audio.equals("Police_Siren")){
+                    mp =  MediaPlayer.create(Login.this,R.raw.police);
+                    mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+                        @Override
+                        public void onPrepared(MediaPlayer mediaPlayer){
+
+                            mp.start();
+                        }
+                    });
+                    mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mediaPlayer) {
+                            mp.release();
+                        }
+                    });
+                }
+            }
+        });
+
     }
+
 
     public void fnLogin(View view) {
         if(binding.eeditTextTextEmail.getText().toString().isEmpty()||

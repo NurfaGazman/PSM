@@ -16,7 +16,18 @@ public class Setting extends AppCompatActivity {
 
     private String token;
    Button Womenscream, Police_Siren;
-   MediaPlayer mp;
+   MediaPlayer mp1 , mp2;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mp1 !=null){
+            mp1.release();
+        }
+        if(mp2 !=null){
+            mp2.release();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,20 +38,33 @@ public class Setting extends AppCompatActivity {
         Womenscream = findViewById(R.id.Women_scream);
         Police_Siren = findViewById(R.id.Siren);
 
+
+
+
+
         Womenscream.setOnClickListener((new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                mp =  MediaPlayer.create(Setting.this,R.raw.woman_scream);
-                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+                SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sharedPreferences.edit();
+                edt.putString("sound","Womenscream");
+                edt.apply();
+
+                mp1 =  MediaPlayer.create(Setting.this,R.raw.woman_scream);
+                mp1.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer){
-                        mp.start();
+                        if(mp2 !=null){
+                            mp2.release();
+                        }
+
+                        mp1.start();
                     }
                 });
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mp1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
-                        mp.release();
+                        mp1.release();
                     }
                 });
             }
@@ -49,24 +73,33 @@ public class Setting extends AppCompatActivity {
         Police_Siren.setOnClickListener((new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                mp =  MediaPlayer.create(Setting.this,R.raw.police);
-                mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
+                SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
+                SharedPreferences.Editor edt = sharedPreferences.edit();
+                edt.putString("sound","Police_Siren");
+                edt.apply();
+
+                mp2 =  MediaPlayer.create(Setting.this,R.raw.police);
+                mp2.setOnPreparedListener(new MediaPlayer.OnPreparedListener(){
                     @Override
                     public void onPrepared(MediaPlayer mediaPlayer){
-                        mp.start();
+                        if(mp1 !=null){
+                            mp1.release();
+                        }
+
+                        mp2.start();
                     }
                 });
-                mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                mp2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mediaPlayer) {
-                        mp.release();
+                        mp2.release();
                     }
                 });
             }
         }));
 
 
-    
+
         //SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
         //token = sharedPreferences.getString("token",null);
 
