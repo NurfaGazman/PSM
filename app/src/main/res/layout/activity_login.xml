@@ -23,17 +23,17 @@
         app:layout_constraintGuide_percent="0.82" />
 
     <Button
+        android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:onClick="fnLogin"
         android:text="Login"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.657" />
+        app:layout_constraintVertical_bias="0.683" />
 
     <EditText
         android:id="@+id/eeditTextTextEmail"
@@ -142,5 +142,30 @@
         android:layout_height="0dp"
         tools:layout="@layout/empty"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/btnSound"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/audio" />
+
+    <ImageView
+        android:id="@+id/btnCall"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintStart_toEndOf="@+id/btnSound"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.384"
+        app:srcCompat="@drawable/phone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

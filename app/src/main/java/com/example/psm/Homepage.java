@@ -49,6 +49,7 @@ public class Homepage extends AppCompatActivity {
         binding.btnContact.setOnClickListener(this::goToContact);
         binding.btnsetting.setOnClickListener(this::goToSetting);
         binding.btnself.setOnClickListener(this::goToSelf);
+        binding.btnPeriodHome.setOnClickListener(this::goToPeriodHome);
     }
 
 
@@ -71,6 +72,11 @@ public class Homepage extends AppCompatActivity {
 
     public void goToSelf(View view){
         Intent intent = new Intent(Homepage.this, SelfLearn.class);  //panggilPage
+        startActivity(intent);
+    }
+
+    public void goToPeriodHome(View view){
+        Intent intent = new Intent(Homepage.this, PeriodHome.class);  //panggilPage
         startActivity(intent);
     }
 

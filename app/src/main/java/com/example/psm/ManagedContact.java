@@ -8,13 +8,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaSession2;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.example.psm.Controller.ContactClick;
 import com.example.psm.Controller.ContactController;
 import com.example.psm.Controller.RequestController;
 import com.example.psm.Controller.SweetAlert;
@@ -61,10 +64,39 @@ public class ManagedContact extends AppCompatActivity {
         contact = new Vector<>();
 
         binding.btnAddNo.setOnClickListener(this::fnContact);
-        //contact.add(new Contact("Fathihah","013-4310199"));
 
 
-        contactController = new ContactController(getLayoutInflater(),contact);
+        contactController = new ContactController(getLayoutInflater(), contact, new ContactClick() {
+            @Override
+            public void clickContact(Contact contact) {
+
+                swal.confirm("Delete Contact?", "Name:" + contact.getName() + "\nNo:" + contact.getContact_no(),
+                        new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismiss();
+
+                                RequestController requestController = new RequestController(Request.Method.DELETE,
+                                        "/api/Contact/" + contact.getContact_no(), null, token,
+                                        new Response.Listener<String>() {
+                                            @Override
+                                            public void onResponse(String response) {
+                                                swal.show("Success", "Valid", SweetAlertDialog.SUCCESS_TYPE);
+                                                loadContact();
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                            swal.show("Failed to Delete", "Invalid to Delete",SweetAlertDialog.ERROR_TYPE);
+                                            loadContact();
+                                    }
+
+                                });
+                                requestQueue.add(requestController);
+                            }
+                        });
+            }
+        });
         binding.listContact.setAdapter(contactController);
         binding.listContact.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
@@ -77,7 +109,7 @@ public class ManagedContact extends AppCompatActivity {
         )
         {
             new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE)
-                    .setTitleText("Please insert name")
+                    .setTitleText("Please insert name and contact")
                     .setContentText("Please fill in all the field")
                     .show();
 
@@ -125,6 +157,7 @@ public class ManagedContact extends AppCompatActivity {
     }
 
     public void loadContact(){
+        contact.clear();
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Contact", null, token,
                 new Response.Listener<String>() {
