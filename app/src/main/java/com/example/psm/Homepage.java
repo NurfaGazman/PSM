@@ -55,30 +55,33 @@ public class Homepage extends AppCompatActivity {
 
 
     //panggil link button yang tuk dilinkkan
+    // Contact
     public void goToContact(View view) {
         Intent intent = new Intent(Homepage.this, ManagedContact.class);  //panggilPage
         startActivity(intent);
     }
-
+//manageProfile
     public void goToProfile(View view){
         Intent intent = new Intent(Homepage.this, ManagedProfile.class);  //panggilPage
         startActivity(intent);
     }
-
+//setting
     public void goToSetting(View view){
         Intent intent = new Intent(Homepage.this, Setting.class);  //panggilPage
         startActivity(intent);
     }
 
+//selfNote
     public void goToSelf(View view){
         Intent intent = new Intent(Homepage.this, SelfLearn.class);  //panggilPage
         startActivity(intent);
     }
-
+//period page
     public void goToPeriodHome(View view){
         Intent intent = new Intent(Homepage.this, PeriodHome.class);  //panggilPage
         startActivity(intent);
     }
+
 
     //logout btn
 

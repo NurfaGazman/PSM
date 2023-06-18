@@ -32,9 +32,12 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Login extends AppCompatActivity {
     private RequestQueue requestQueue;
     private SweetAlert swal;
+    ActivityLoginBinding binding;
+
+    //part audio
     MediaPlayer mp;
     private String audio;
-    ActivityLoginBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,17 +46,18 @@ public class Login extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        //clicktext signUp(id)
+        //clicktext signUp(id) and forgot password
         binding.SignUp.setOnClickListener(this::SignUp);
-
+        binding.ResetPass.setOnClickListener(this::ForgotPassword);
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
+
 
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
-
         SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
-        audio = sharedPreferences.getString("sound",null);
 
+        audio = sharedPreferences.getString("sound",null);
+        //sound button
         binding.btnSound.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -107,7 +111,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-
+//function login
     public void fnLogin(View view) {
         if(binding.eeditTextTextEmail.getText().toString().isEmpty()||
                 binding.editTextTextPassword.getText().toString().isEmpty()
@@ -173,6 +177,12 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(Login.this, Register.class);  //panggilPage
         startActivity(intent);
     }
+
+    public void ForgotPassword(View view){
+        Intent intent = new Intent(Login.this, ForgotPassword.class);  //panggilPage
+        startActivity(intent);
+    }
+
 
     @Override
     protected void onResume() {

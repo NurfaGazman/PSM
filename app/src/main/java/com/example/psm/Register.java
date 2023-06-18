@@ -42,9 +42,9 @@ public class Register extends AppCompatActivity {
     //declared setiap activity kena ada
     private RequestQueue requestQueue;
     private SweetAlert swal;
-
-
     private ActivityRegister2Binding binding;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
