@@ -15,8 +15,10 @@
 
     <Button
         android:id="@+id/btnStart"
-        android:text="start"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="start"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="303dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

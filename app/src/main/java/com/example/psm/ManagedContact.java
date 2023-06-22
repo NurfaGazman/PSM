@@ -181,7 +181,6 @@ public class ManagedContact extends AppCompatActivity {
                                 contactuser.setName(jsonObject.getString("name"));
 
                             contact.add(contactuser);
-
                             contactController.notifyDataSetChanged();
 
                         }

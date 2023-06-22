@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_height="match_parent"
+    android:background="#F1D2D2"
     tools:context=".Login">
 
     <androidx.constraintlayout.widget.Guideline
@@ -146,7 +147,7 @@
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/audio" />
+        app:srcCompat="@drawable/emergency" />
 
     <ImageView
         android:id="@+id/btnCall"
@@ -157,7 +158,7 @@
         app:layout_constraintStart_toEndOf="@+id/btnSound"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:layout_constraintVertical_bias="0.384"
-        app:srcCompat="@drawable/phone" />
+        app:srcCompat="@drawable/telephone" />
 
     <TextView
         android:id="@+id/ResetPass"

@@ -7,6 +7,7 @@ public class Contact {
     private String contact_no;
     private String name;
 
+
     public int getUser_Id() {
         return user_Id;
     }

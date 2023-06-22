@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1D2D2"
     tools:context=".Setting">
 
 
@@ -17,7 +18,7 @@
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.054"
-        app:srcCompat="@drawable/settings" />
+        app:srcCompat="@drawable/setting" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vh2"
