@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationRequest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -63,7 +66,6 @@ public class Homepage extends AppCompatActivity {
     }
 
 
-
     //panggil link button yang tuk dilinkkan
     // Contact
     public void goToContact(View view) {
@@ -95,20 +97,24 @@ public class Homepage extends AppCompatActivity {
 //location page utk send auto location kepada user lain by numberphone
     public void gotoLocation(View view){
         //function utk dapat longitute and latitude
+        Log.d("test","start");
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
+            Log.d("test","Request");
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSION_REQUEST_LOCATION);
         } else {
+            /*Log.d("test","Gran");
+            LocationRequest locationRequest = LocationRequest.
             FusedLocationProviderClient sendLocation = LocationServices.getFusedLocationProviderClient(this);
             sendLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
-                    
+
                 }
-            });
+            });/*
 
         }
 
