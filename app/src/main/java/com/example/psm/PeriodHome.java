@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,17 +26,19 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateLongClickListener;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
-
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class PeriodHome extends AppCompatActivity {
 
@@ -59,40 +62,106 @@ public class PeriodHome extends AppCompatActivity {
 
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
-
+        binding.periodLenght.setText("7");
+        binding.cycyleLenght.setText("28");
 
         binding.calendarView.setOnDateLongClickListener(
                 new OnDateLongClickListener() {
                     @Override
-                    public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date) {
-
-                        DayViewDecorator selectedRange = new DayViewDecorator() {
-                            @Override
-                            public boolean shouldDecorate(CalendarDay day) {
-                                //snio setting date
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.set(date.getYear(),date.getMonth(),date.getDay());
-                                calendar.add(Calendar.DAY_OF_MONTH,5/*berapa hari nk tambah*/);
-
-                                LocalDate endDate = LocalDateTime.fromCalendarFields(calendar).toLocalDate();
-                                CalendarDay end = CalendarDay.from(endDate.getYear(),endDate.getMonthOfYear()-1,endDate.getDayOfMonth());
-                                Toast.makeText(PeriodHome.this, date+"to"+endDate, Toast.LENGTH_SHORT).show();
+                    public void onDateLongClick(@NonNull MaterialCalendarView widget, @NonNull CalendarDay selectedDate) {
+                        //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                        //selectedDate.toString();
+                        LocalDate date = new LocalDate(selectedDate.getYear(),selectedDate.getMonth(),selectedDate.getDay());
 
 
+                       Period selectedPeriod = dbCalander(selectedDate);
+                       if(selectedPeriod != null){
+                           //klu user select range yang ad period
+                           swal.dialog("Change", "Do you want to change?\n Delete or Update", "Delete", "Update",
+                                   new SweetAlertDialog.OnSweetClickListener() {
+                                       @Override
+                                       public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                           sweetAlertDialog.dismiss();
+                                           deletePeriod(selectedPeriod);
 
-                                return ((day.isAfter(date)|| day.equals(date)) &&
-                                        (day.isBefore(end)) || day.equals(end) );
-                            }
+                                       }
+                                   }, new SweetAlertDialog.OnSweetClickListener() {
+                                       @Override
+                                       public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                           sweetAlertDialog.dismiss();
+                                           swal.dialog("Change", "Do you want to change?\n Start or End Date", "Start", "End"
+                                                   , new SweetAlertDialog.OnSweetClickListener() {
+                                                       @Override
+                                                       public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                           selectedPeriod.setStart_date(date.toString("yyyy-MM-dd"));
+                                                           updatePeriod(selectedPeriod);
+                                                           sweetAlertDialog.dismiss();
+                                                           //action text1
 
-                            @Override
-                            public void decorate(DayViewFacade view) {
-                                view.addSpan(new DotSpan(10, Color.RED));
+                                                       }
+                                                   }, new SweetAlertDialog.OnSweetClickListener() {
 
-                            }
-                        };
-                        binding.calendarView.addDecorator(selectedRange);
+                                                       //action text2
+                                                       @Override
+                                                       public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                           selectedPeriod.setEnd_date(date.toString("yyyy-MM-dd"));
+                                                           updatePeriod(selectedPeriod);
+                                                           sweetAlertDialog.dismiss();
+                                                       }
+                                                   });
+                                       }
+                                   });
+
+                       }else{
+                           //klu user select tp xdak data date
+                          int nearestIndex = findNearest(date); //utk cari index dalam period list yang paling dekat dengan date user select
+                          if(nearestIndex != -1){
+                              //yang ad date dekt dengan 30hari
+                              swal.dialog("update", "Update Date", "Yes", "No",
+                                      new SweetAlertDialog.OnSweetClickListener() {
+                                          @Override
+                                          public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            //kalau yes
+                                              Period period =   periodList.get(nearestIndex);
+                                              period.setCloserDate(date);
+                                              updatePeriod(period);
+                                              sweetAlertDialog.dismiss();
+                                          }
+                                      }, new SweetAlertDialog.OnSweetClickListener() {
+                                          @Override
+                                          public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            //kalau No
+                                              sweetAlertDialog.dismiss();
+                                              swal.confirm("New Record?", "New Record Date of Period", new SweetAlertDialog.OnSweetClickListener() {
+                                                  @Override
+                                                  public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                    Period period = new Period(date.toString("yyyy-MM-dd"),Integer.parseInt(
+                                                            binding.periodLenght.getText().toString()));
+                                                    newPeriod(period);
+                                                    sweetAlertDialog.dismiss();
+                                                  }
+                                              });
+                                          }
+                                      });
+                          }
+
+                          else{
+                              swal.confirm("New Record?", "New Record Date of Period", new SweetAlertDialog.OnSweetClickListener() {
+                                  @Override
+                                  public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                      Period period = new Period(date.toString("yyyy-MM-dd"),Integer.parseInt(
+                                              binding.periodLenght.getText().toString()));
+                                      newPeriod(period);
+                                      sweetAlertDialog.dismiss();
+                                  }
+                              });
+                          }
+
+                       }
+
                     }
                 }
+
         );
     }
 
@@ -102,6 +171,20 @@ public class PeriodHome extends AppCompatActivity {
        periodLoad();
 
     }
+    //utk checking dari database punya data date
+    public Period dbCalander(CalendarDay calendarDay){
+        for(Period period : periodList){
+            //check calander
+            if  ((calendarDay.isAfter(period.getStart())|| calendarDay.equals(period.getStart())) &&
+                    (calendarDay.isBefore(period.getEnd())) || calendarDay.equals(period.getEnd()) ) {
+
+                return period;
+            }
+        }
+        return null;
+    }
+
+    //load date period daripada database
     public void periodLoad(){
         periodList.clear();
         RequestController requestController = new RequestController(Request.Method.GET,
@@ -148,9 +231,124 @@ public class PeriodHome extends AppCompatActivity {
          requestQueue.add(requestController);
     }
     public void loadCalendar(){
+        binding.calendarView.removeDecorators();
         for(Period period : periodList){
             binding.calendarView.addDecorator(period.getDecorator());
         }
 
     }
+    //update period kt database
+    public void updatePeriod(Period period){
+        JSONObject body = new JSONObject();
+
+        try {
+
+            body.put("user_Id",period.getUser_Id());
+            body.put("period_Id",period.getPeriod_Id());
+            body.put("start_date",period.getStart_date());
+            body.put("end_date",period.getEnd_date());
+
+
+
+            RequestController requestController = new RequestController(Request.Method.PUT,
+                    "/api/Period", body, token,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {   //success
+                            periodLoad();
+                        }
+
+                    },
+
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) { //error
+                            swal.show("Failed","Invalid Update", SweetAlertDialog.ERROR_TYPE);
+
+                        }
+                    });
+
+            requestQueue.add(requestController);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public int findNearest(LocalDate localdate){
+        int minimumIndex = -1;
+        int minimumDay = 30;
+
+        for(int i = 0; i < periodList.size(); i++){
+            if (periodList.get(i).DayDifferent(localdate)<=minimumDay){
+                minimumDay = periodList.get(i).DayDifferent(localdate);
+                minimumIndex = i;
+            }
+        }
+        return minimumIndex;
+    }
+
+    //insert database utk period baru
+    public void newPeriod(Period period){
+        JSONObject body = new JSONObject();
+
+        try {
+
+            body.put("start_date",period.getStart_date());
+            body.put("end_date",period.getEnd_date());
+
+
+
+            RequestController requestController = new RequestController(Request.Method.POST,
+                    "/api/Period", body, token,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {   //success
+                            periodLoad();
+                        }
+
+                    },
+
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) { //error
+                            swal.show("Failed","Invalid insert", SweetAlertDialog.ERROR_TYPE);
+
+                        }
+                    });
+
+            requestQueue.add(requestController);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //function delete of period selected from database
+
+    public void deletePeriod(Period period) {
+
+        RequestController requestController = new RequestController(Request.Method.DELETE,
+                "/api/Period/"+period.getPeriod_Id(), null, token,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {   //success
+                        periodLoad();
+                    }
+
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) { //error
+                        swal.show("Failed", "Invalid delete", SweetAlertDialog.ERROR_TYPE);
+
+                    }
+                });
+
+        requestQueue.add(requestController);
+    }
+
 }

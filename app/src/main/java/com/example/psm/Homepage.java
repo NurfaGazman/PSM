@@ -2,11 +2,16 @@ package com.example.psm;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,6 +20,9 @@ import android.widget.Toast;
 
 import com.example.psm.databinding.ActivityHomepageBinding;
 import com.example.psm.databinding.ActivityRegister2Binding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.util.zip.Inflater;
 
@@ -22,6 +30,7 @@ public class Homepage extends AppCompatActivity {
 
     //declare variable string
     private String token;
+    private static final int PERMISSION_REQUEST_LOCATION=1;
 
     //kena ada setiap activity
 
@@ -50,6 +59,7 @@ public class Homepage extends AppCompatActivity {
         binding.btnsetting.setOnClickListener(this::goToSetting);
         binding.btnself.setOnClickListener(this::goToSelf);
         binding.btnPeriodHome.setOnClickListener(this::goToPeriodHome);
+        binding.btnLocation.setOnClickListener(this::gotoLocation);
     }
 
 
@@ -76,13 +86,37 @@ public class Homepage extends AppCompatActivity {
         Intent intent = new Intent(Homepage.this, SelfLearn.class);  //panggilPage
         startActivity(intent);
     }
+
 //period page
     public void goToPeriodHome(View view){
         Intent intent = new Intent(Homepage.this, PeriodHome.class);  //panggilPage
         startActivity(intent);
     }
+//location page utk send auto location kepada user lain by numberphone
+    public void gotoLocation(View view){
+        //function utk dapat longitute and latitude
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSION_REQUEST_LOCATION);
+        } else {
+            FusedLocationProviderClient sendLocation = LocationServices.getFusedLocationProviderClient(this);
+            sendLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
+                    
+                }
+            });
 
+        }
 
+    }
+//utk hantar ke server location
+    public void serverLocation(){
+
+    }
     //logout btn
 
     @Override

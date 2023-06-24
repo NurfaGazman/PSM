@@ -35,7 +35,7 @@ public class SweetAlert extends Fragment {
                 .setCancelText("Yes")
                 .setConfirmText("No")
                 .showCancelButton(true)
-                .setCancelClickListener(action) // reverse sbb somehow kiri die cancel button
+                .setCancelClickListener(action) // reverse sbb somehow kiri dia cancel button
                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                     @Override
                     public void onClick(SweetAlertDialog sDialog) {
@@ -43,6 +43,21 @@ public class SweetAlert extends Fragment {
                     }
                 })
                 .show();
+    }
+
+    public void dialog(String title, String message ,String text1,String text2,
+                       SweetAlertDialog.OnSweetClickListener action1,
+                       SweetAlertDialog.OnSweetClickListener action2){
+        new SweetAlertDialog(this.getActivity(), SweetAlertDialog.WARNING_TYPE)
+                .setTitleText(title)
+                .setContentText(message)
+                .setCancelText(text1)
+                .setConfirmText(text2)
+                .showCancelButton(true)
+                .setCancelClickListener(action1) // reverse sbb somehow kiri dia cancel button
+                .setConfirmClickListener(action2)
+                .show();
+
     }
 
 }

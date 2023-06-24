@@ -143,22 +143,11 @@
         android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.222"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.079"
         app:srcCompat="@drawable/emergency" />
-
-    <ImageView
-        android:id="@+id/btnCall"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintStart_toEndOf="@+id/btnSound"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        app:layout_constraintVertical_bias="0.384"
-        app:srcCompat="@drawable/telephone" />
 
     <TextView
         android:id="@+id/ResetPass"

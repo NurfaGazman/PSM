@@ -19,10 +19,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.psm.Controller.RequestController;
 import com.example.psm.Controller.SweetAlert;
 import com.example.psm.databinding.ActivityLoginBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;
 import org.json.JSONObject;

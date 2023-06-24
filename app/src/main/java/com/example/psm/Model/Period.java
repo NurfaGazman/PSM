@@ -9,6 +9,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormatter;
@@ -26,11 +27,19 @@ public class Period {
     private CalendarDay end;
     private Integer highlight;
 
-
     //bahagian calculation
     private LocalDate date_start;
     private LocalDate date_end;
 
+    public Period(){
+
+    }
+
+public Period(String start_date,int day){
+    setStart_date(start_date);
+    setEnd_date(date_start.plusDays(day).toString("yyyy-MM-dd"));
+
+}
     public Integer getHighlight() {
         return highlight;
     }
@@ -39,8 +48,33 @@ public class Period {
         this.highlight = highlight;
     }
 
+//kira jarak hari period dengan hari user pilih. return jarak yg paling pendek. sama ada dari end ataupun start
+    public int DayDifferent(LocalDate localDate){
+      int fromStart = Math.abs( Days.daysBetween(localDate,date_start).getDays());
+      int fromEnd = Math.abs(Days.daysBetween(localDate,date_end).getDays());
+      if(fromStart <= fromEnd){
+          return fromStart;
+      }
+      return fromEnd;
+    }
+    //auto update yang paling dekat dgn date
+    public void setCloserDate(LocalDate localDate){
+        int fromStart = Math.abs(Days.daysBetween(localDate,date_start).getDays());
+        int fromEnd = Math.abs(Days.daysBetween(localDate,date_end).getDays());
+
+        if(fromStart < fromEnd){
+           //kalau start lg dekat, update start.
+            setStart_date(localDate.toString("yyyy-MM-dd"));
+
+        }else{
+            setEnd_date(localDate.toString("yyyy-MM-dd"));
+        }
+
+    }
+
 
     public CalendarDay getStart() {
+
         return start;
     }
 
@@ -139,7 +173,7 @@ public class Period {
             @Override
             public void decorate(DayViewFacade view) {
 
-                view.addSpan(new DotSpan(50,highlight));
+                view.addSpan(new DotSpan(60,highlight));
 
             }
         };
