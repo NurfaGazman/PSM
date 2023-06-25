@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -105,16 +106,33 @@ public class Homepage extends AppCompatActivity {
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
                     PERMISSION_REQUEST_LOCATION);
         } else {
-            /*Log.d("test","Gran");
-            LocationRequest locationRequest = LocationRequest.
-            FusedLocationProviderClient sendLocation = LocationServices.getFusedLocationProviderClient(this);
+            Log.d("test","Gran");
+            LocationManager locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_FINE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1,
+                    new LocationListener() {
+                        @Override
+                        public void onLocationChanged(@NonNull Location location) {
+                            Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
+                        }
+                    });
+            /*locationManager.requestSingleUpdate(criteria, new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
+
+                }
+            },null);
+            sendLocation = LocationServices.getFusedLocationProviderClient(this);
+
             sendLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
 
                 }
-            });/*
+            });*/
 
         }
 

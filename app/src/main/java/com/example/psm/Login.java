@@ -2,12 +2,20 @@ package com.example.psm;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,9 +27,14 @@ import com.android.volley.toolbox.Volley;
 import com.example.psm.Controller.RequestController;
 import com.example.psm.Controller.SweetAlert;
 import com.example.psm.databinding.ActivityLoginBinding;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -29,6 +42,11 @@ public class Login extends AppCompatActivity {
     private RequestQueue requestQueue;
     private SweetAlert swal;
     ActivityLoginBinding binding;
+
+
+    //location test
+    private static final int PERMISSION_REQUEST_LOCATION=1;
+    private FusedLocationProviderClient fusedLocationProviderClient;
 
     //part audio
     MediaPlayer mp;
@@ -41,6 +59,8 @@ public class Login extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         //clicktext signUp(id) and forgot password
         binding.SignUp.setOnClickListener(this::SignUp);
@@ -170,8 +190,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void SignUp(View view){
-        Intent intent = new Intent(Login.this, Register.class);  //panggilPage
-        startActivity(intent);
+    gotoLocation();
+        //Intent intent = new Intent(Login.this, Register.class);  //panggilPage
+        //startActivity(intent);
     }
 
     public void ForgotPassword(View view){
@@ -203,5 +224,29 @@ public class Login extends AppCompatActivity {
             }
         });
         requestQueue.add(requestController);
+    }
+
+    public void gotoLocation(){
+        //function utk dapat longitute and latitude
+        Log.d("test","start");
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.d("test","Request");
+            ActivityCompat.requestPermissions(this,
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSION_REQUEST_LOCATION);
+        } else {
+            Log.d("test","Gran");
+            //criteria.setAccuracy(Criteria.ACCURACY_FINE);
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    Log.d("test","loc"+location.getLatitude()+","+location.getLongitude());
+                }
+            });
+
+
+        }
+
     }
 }
