@@ -20,22 +20,35 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+import com.example.psm.Controller.RequestController;
 import com.example.psm.databinding.ActivityHomepageBinding;
 import com.example.psm.databinding.ActivityRegister2Binding;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.zip.Inflater;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Homepage extends AppCompatActivity {
 
     //declare variable string
     private String token;
     private static final int PERMISSION_REQUEST_LOCATION=1;
-
+    private FusedLocationProviderClient fusedLocationProviderClient;
+    private RequestQueue requestQueue;
     //kena ada setiap activity
 
     ActivityHomepageBinding binding;
@@ -48,13 +61,16 @@ public class Homepage extends AppCompatActivity {
         binding = ActivityHomepageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
+
 //wajib letak button back jangan lupa kt manifest jugak . follow homepage jugk
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
-
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     //sampai sini
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
-
+        SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token",null);
         //ambil value dalam shared pref
 
 
@@ -95,48 +111,71 @@ public class Homepage extends AppCompatActivity {
         Intent intent = new Intent(Homepage.this, PeriodHome.class);  //panggilPage
         startActivity(intent);
     }
+
+
 //location page utk send auto location kepada user lain by numberphone
-    public void gotoLocation(View view){
-        //function utk dapat longitute and latitude
-        Log.d("test","start");
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.d("test","Request");
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSION_REQUEST_LOCATION);
-        } else {
-            Log.d("test","Gran");
-            LocationManager locationManager = (LocationManager)getSystemService(LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            criteria.setAccuracy(Criteria.ACCURACY_FINE);
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 1,
-                    new LocationListener() {
-                        @Override
-                        public void onLocationChanged(@NonNull Location location) {
-                            Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
-                        }
-                    });
-            /*locationManager.requestSingleUpdate(criteria, new LocationListener() {
-                @Override
-                public void onLocationChanged(@NonNull Location location) {
-                    Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
+public void gotoLocation(View view){
+    //function utk dapat longitute and latitude
+    Log.d("test","start");
+    //check permission from user location
+    if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED) {
+        //minta permission dari user
+        Log.d("test","Request");
+        ActivityCompat.requestPermissions(this,
+                new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                PERMISSION_REQUEST_LOCATION);
+    } else {
+        //dah ad permission
+        Log.d("test","Gran");
 
+        //request location dari user device
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                JSONObject body = new JSONObject();
+
+                Log.d("test","loc"+location.getLatitude()+","+location.getLongitude());
+                try {
+
+                    body.put("latitude",location.getLatitude());
+                    body.put("longitude",location.getLongitude());
+
+
+                    RequestController requestController = new RequestController(Request.Method.POST,
+                            "/api/Contact/emergency", body, token,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {   //success
+
+                                    //swal.show("Update","Success Updated", SweetAlertDialog.SUCCESS_TYPE);
+                                    Log.d("test","success");
+
+
+
+                                }
+                            },
+
+                            new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) { //error
+                                    //swal.show("Failed","Invalid update", SweetAlertDialog.ERROR_TYPE);
+                                    Log.d("test","Error");
+                                }
+                            });
+
+                    requestQueue.add(requestController);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            },null);
-            sendLocation = LocationServices.getFusedLocationProviderClient(this);
+            }
+        });
 
-            sendLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    Log.d("test","" + location.getLatitude()+ "," + location.getLongitude());
-
-                }
-            });*/
-
-        }
 
     }
+
+}
 //utk hantar ke server location
     public void serverLocation(){
 

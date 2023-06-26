@@ -23,7 +23,7 @@
         <activity
             android:name=".ForgotPassword"
             android:exported="false"
-            android:parentActivityName=".Homepage">
+            android:parentActivityName=".Login">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

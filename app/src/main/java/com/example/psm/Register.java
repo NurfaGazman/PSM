@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,7 @@ public class Register extends AppCompatActivity {
         binding = ActivityRegister2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
+        binding.btnSignup.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
 
         //assign
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;

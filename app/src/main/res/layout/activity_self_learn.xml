@@ -42,7 +42,7 @@
         android:id="@+id/imageView5"
         android:layout_width="0dp"
         android:layout_height="65dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
@@ -51,11 +51,12 @@
 
     <TextView
         android:id="@+id/textView22"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="sans-serif-black"
         android:text="Safety: Keeping yourself out of harm's way"
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.0"
@@ -64,11 +65,12 @@
 
     <TextView
         android:id="@+id/textView21"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Alertness: Being aware of your surroundings"
         android:fontFamily="sans-serif-black"
+        android:text="Alertness: Being aware of your surroundings"
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
@@ -76,11 +78,12 @@
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Protection: Taking measures to keep yourself safe"
         android:fontFamily="sans-serif-black"
+        android:text="Protection: Taking measures to keep yourself safe"
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
@@ -88,11 +91,12 @@
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-black"
         android:text="Communication: Using words and assertiveness to defuse"
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.538"
@@ -101,11 +105,12 @@
 
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Escape: Finding a way to get away from a threatening situation."
+        android:layout_marginTop="10dp"
         android:fontFamily="sans-serif-black"
+        android:text="Escape: Finding a way to get away from a threatening situation."
+        android:textAlignment="center"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.495"

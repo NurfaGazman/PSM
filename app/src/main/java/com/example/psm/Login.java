@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -46,7 +47,6 @@ public class Login extends AppCompatActivity {
 
     //location test
     private static final int PERMISSION_REQUEST_LOCATION=1;
-    private FusedLocationProviderClient fusedLocationProviderClient;
 
     //part audio
     MediaPlayer mp;
@@ -59,8 +59,8 @@ public class Login extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.button.setBackgroundColor(Color.parseColor("#db5a6b"));
 
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         //clicktext signUp(id) and forgot password
         binding.SignUp.setOnClickListener(this::SignUp);
@@ -190,9 +190,9 @@ public class Login extends AppCompatActivity {
     }
 
     public void SignUp(View view){
-    gotoLocation();
-        //Intent intent = new Intent(Login.this, Register.class);  //panggilPage
-        //startActivity(intent);
+
+        Intent intent = new Intent(Login.this, Register.class);  //panggilPage
+        startActivity(intent);
     }
 
     public void ForgotPassword(View view){
@@ -226,27 +226,4 @@ public class Login extends AppCompatActivity {
         requestQueue.add(requestController);
     }
 
-    public void gotoLocation(){
-        //function utk dapat longitute and latitude
-        Log.d("test","start");
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.d("test","Request");
-            ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSION_REQUEST_LOCATION);
-        } else {
-            Log.d("test","Gran");
-            //criteria.setAccuracy(Criteria.ACCURACY_FINE);
-            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(new OnSuccessListener<Location>() {
-                @Override
-                public void onSuccess(Location location) {
-                    Log.d("test","loc"+location.getLatitude()+","+location.getLongitude());
-                }
-            });
-
-
-        }
-
-    }
 }

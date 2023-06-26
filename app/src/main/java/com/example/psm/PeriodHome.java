@@ -117,7 +117,7 @@ public class PeriodHome extends AppCompatActivity {
                           int nearestIndex = findNearest(date); //utk cari index dalam period list yang paling dekat dengan date user select
                           if(nearestIndex != -1){
                               //yang ad date dekt dengan 30hari
-                              swal.dialog("update", "Update Date", "Yes", "No",
+                              swal.dialog("update", "Update Previous Date", "Yes", "No",
                                       new SweetAlertDialog.OnSweetClickListener() {
                                           @Override
                                           public void onClick(SweetAlertDialog sweetAlertDialog) {

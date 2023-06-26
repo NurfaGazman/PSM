@@ -2,11 +2,14 @@ package com.example.psm;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ import com.example.psm.databinding.ActivityRegister2Binding;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class ManagedProfile extends AppCompatActivity {
@@ -34,7 +39,7 @@ public class ManagedProfile extends AppCompatActivity {
     private ActivityManagedProfileBinding binding;
 
     private User currentUser;
-
+    private DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,7 @@ public class ManagedProfile extends AppCompatActivity {
         binding = ActivityManagedProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
-
+        binding.btnSave.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
 
         swal=new SweetAlert();
@@ -56,6 +61,15 @@ public class ManagedProfile extends AppCompatActivity {
 
         currentUser = new User();
         binding.btnSave.setOnClickListener(this::UserUpdate);
+
+        //date picker utk birth date
+
+        binding.dateBirth.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(hasFocus) fnInvokeDatePicker();
+            }
+        });
 
     }
 
@@ -183,5 +197,34 @@ public class ManagedProfile extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+
+    //date function birth date
+
+    private void fnInvokeDatePicker(){
+        final Calendar cldr = Calendar.getInstance();
+        int day = cldr.get(Calendar.DAY_OF_MONTH);
+        int month = cldr.get(Calendar.MONTH);
+        int year = cldr.get(Calendar.YEAR);
+
+        datePickerDialog = new DatePickerDialog(ManagedProfile.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                String month= String.valueOf((monthOfYear+1));
+                if((monthOfYear+1)<10){
+                    month="0"+month;
+                }
+                String day=String.valueOf(dayOfMonth);
+                if(dayOfMonth<10){
+                    day="0"+day;
+                }
+                binding.dateBirth.setText(year + "-" +month+ "-" + day);
+                binding.dateBirth.setError(null);
+                binding.dateBirth.clearFocus();
+            }
+        }, year, month, day);
+
+        datePickerDialog.show();
+
     }
 }
