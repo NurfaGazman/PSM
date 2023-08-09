@@ -27,11 +27,15 @@ public class Period {
     private CalendarDay end;
     private Integer highlight;
 
+
     //bahagian calculation
     private LocalDate date_start;
     private LocalDate date_end;
 
     public Period(){
+        //default value utk tau ni bukan dari database
+
+        period_Id = -1;
 
     }
 
@@ -89,7 +93,6 @@ public Period(String start_date,int day){
     public void setEnd(CalendarDay end) {
         this.end = end;
     }
-
 
     public int getUser_Id() {
         return user_Id;
@@ -178,4 +181,18 @@ public Period(String start_date,int day){
             }
         };
     }
+//sambung esok!
+    //kira period length
+ public int getPeriodLength (){
+        int length = -1;
+
+        if(date_start != null && date_end != null){
+            //end date  start klu xnull msuk
+            //length = Math.abs(Days.daysBetween(localDate,date_start).getDays());
+            //
+
+        }
+        return length;
+ }
+
 }

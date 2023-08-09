@@ -20,8 +20,8 @@ public class RequestController extends StringRequest {
     private String token="";
 
 //server URL ikut ipv4 (ipconfig) dlm cmd
-    //public static String serverUrl = "http://10.0.2.2:8080/PSM";// ip default test kt emulator
-    public static String serverUrl = "http://192.168.8.114:8080/PSM"; //check kt controlpanel
+    public static String serverUrl = "http://10.0.2.2:8080/PSM";// ip default test kt emulator
+    //public static String serverUrl = "http://192.168.8.114:8080/PSM"; //check kt controlpanel
     private JSONObject body; //
 
     public RequestController(int method, String url, Response.Listener<String> listener, @Nullable Response.ErrorListener errorListener) {

@@ -179,8 +179,6 @@ public class ManagedProfile extends AppCompatActivity {
                         public void onResponse(String response) {   //success
 
                             swal.show("Update","Success Updated", SweetAlertDialog.SUCCESS_TYPE);
-
-
                         }
                     },
 
@@ -188,7 +186,6 @@ public class ManagedProfile extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) { //error
                             swal.show("Failed","Invalid update", SweetAlertDialog.ERROR_TYPE);
-
                         }
                     });
 

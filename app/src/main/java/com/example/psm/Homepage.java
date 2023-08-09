@@ -76,7 +76,7 @@ public class Homepage extends AppCompatActivity {
 
         binding.btnProfile.setOnClickListener(this::goToProfile);
         binding.btnContact.setOnClickListener(this::goToContact);
-        binding.btnsetting.setOnClickListener(this::goToSetting);
+        binding.btnSetting.setOnClickListener(this::goToSetting);
         binding.btnself.setOnClickListener(this::goToSelf);
         binding.btnPeriodHome.setOnClickListener(this::goToPeriodHome);
         binding.btnLocation.setOnClickListener(this::gotoLocation);
@@ -108,7 +108,7 @@ public class Homepage extends AppCompatActivity {
 
 //period page
     public void goToPeriodHome(View view){
-        Intent intent = new Intent(Homepage.this, PeriodHome.class);  //panggilPage
+        Intent intent = new Intent(Homepage.this, PeriodDashboard.class);  //panggilPage
         startActivity(intent);
     }
 

@@ -63,9 +63,8 @@
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="40dp"
-
         android:layout_marginTop="20dp"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="serif-bold"
         android:text="Sign Up"
         android:textAlignment="center"
         android:textColor="#E91E63"

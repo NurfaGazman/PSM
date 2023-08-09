@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="What Is Self-Defense?"
-        android:fontFamily="sans-serif-black"
+        android:fontFamily="serif-bold"
         android:gravity="center"
         android:textColor="#E91E63"
         android:textSize="24sp"

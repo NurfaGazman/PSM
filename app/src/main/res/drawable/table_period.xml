@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Background color of the TextView -->
+            <solid android:color="@android:color/white" />
+            <!-- Border color and width -->
+            <stroke
+            android:width="2dp"
+            android:color="@android:color/black" />
+
+            <!-- Corner radius of the border -->
+            <corners android:radius="0dp" />
+        </shape>
+    </item>
+</layer-list>

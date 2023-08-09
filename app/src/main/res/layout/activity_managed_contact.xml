@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Managed Contact"
+        android:fontFamily="serif-bold"
         android:textAlignment="center"
         android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
@@ -57,7 +58,6 @@
         android:id="@+id/list"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="10dp"
         android:entries="@array/message"
         android:spinnerMode="dropdown"
@@ -72,8 +72,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="serif"
-        android:text="Message"
         android:textColor="#000000"
+        android:text="Message"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
