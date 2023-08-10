@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F1D2D2"
     tools:context=".PeriodHistory">
 
     <androidx.constraintlayout.widget.Guideline
@@ -68,10 +69,45 @@
         android:text="List "
         android:textAlignment="center"
         android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/vh3"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/textView33"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listPeriod"
+            android:layout_width="223dp"
+            android:layout_height="160dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vh1"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/vh2"
+            app:layout_constraintTop_toBottomOf="@+id/list"
+            app:layout_constraintVertical_bias="0.883" />
+
+
+    </ScrollView>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/frgSwal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout="@layout/empty"
+        tools:ignore="MissingConstraints" />
+    
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnNewRecord"
         android:layout_width="wrap_content"

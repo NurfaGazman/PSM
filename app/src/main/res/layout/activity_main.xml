@@ -21,4 +21,16 @@
         tools:layout_editor_absoluteX="161dp"
         tools:layout_editor_absoluteY="303dp" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:background="@drawable/rounded_corner"
+        android:drawableStart="@drawable/ic_email"
+        tools:layout_editor_absoluteX="100dp"
+        tools:layout_editor_absoluteY="450dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

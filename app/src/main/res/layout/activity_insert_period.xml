@@ -40,9 +40,9 @@
         android:id="@+id/Periodtitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="Insert Period"
+        android:layout_marginTop="30dp"
         android:fontFamily="serif-bold"
+        android:text="Insert Period"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="24sp"
@@ -54,28 +54,33 @@
         android:id="@+id/startDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Start Date"
         android:inputType="date"
-        android:textColor="#000000"
+        android:textColorHint="#4D000000"
+        android:textSize="17sp"
+        android:drawableStart="@drawable/ic_calendar"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/Periodtitle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <EditText
         android:id="@+id/EndDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:ems="10"
         android:fontFamily="serif"
         android:hint="End Date"
         android:inputType="date"
-        android:textColor="#000000"
+        android:textColorHint="#4D000000"
+        android:textSize="17sp"
+        android:drawableStart="@drawable/ic_calendar"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/startDate" />
 
@@ -83,10 +88,10 @@
         android:id="@+id/btnSavePeriod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:text="SAVE"
-        android:textStyle="bold"
         android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/EndDate" />
 
@@ -94,10 +99,10 @@
         android:id="@+id/btnDeletePeriod"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:text="DELETE"
-        android:textStyle="bold"
         android:textAlignment="center"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/btnSavePeriod"
@@ -109,5 +114,17 @@
         android:layout_height="0dp"
         tools:ignore="MissingConstraints"
         tools:layout="@layout/empty" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="15dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/Periodtitle"
+        app:srcCompat="@drawable/logo_new1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

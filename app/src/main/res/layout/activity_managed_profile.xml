@@ -48,6 +48,7 @@
                 android:fontFamily="serif"
                 android:text="Blood Group"
                 android:textColor="#000000"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/FullName" />
 
@@ -55,22 +56,26 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="serif"
-                android:textColor="#000000"
                 android:text="Full Name"
+                android:textColor="#000000"
+                android:textSize="15sp"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/managedProfile" />
 
             <EditText
                 android:id="@+id/FullName"
                 android:layout_width="0dp"
-                android:layout_height="42dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
                 android:ems="10"
+                android:fontFamily="serif"
                 android:hint="Full name"
                 android:inputType="textEmailAddress"
                 android:textColor="#000000"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/vh1"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
@@ -90,10 +95,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Managed Profile"
                 android:fontFamily="serif-bold"
+                android:text="Managed Profile"
                 android:textAlignment="center"
                 android:textColor="#000000"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toStartOf="@+id/vh1"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/imageView7" />
@@ -111,25 +117,33 @@
                     android:id="@+id/BloodO"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="O" />
+                    android:fontFamily="serif"
+                    android:text="O"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/BloodB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="B" />
+                    android:fontFamily="serif"
+                    android:text="B"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/BloodAb"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="AB" />
+                    android:fontFamily="serif"
+                    android:text="AB"
+                    android:textSize="15sp" />
 
                 <RadioButton
                     android:id="@+id/BloodA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="A" />
+                    android:fontFamily="serif"
+                    android:text="A"
+                    android:textSize="15sp" />
 
             </RadioGroup>
 
@@ -138,19 +152,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_corner"
                 android:fontFamily="serif"
                 android:text="Birth Date"
                 android:textColor="#000000"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
             <EditText
                 android:id="@+id/dateBirth"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_corner"
                 android:ems="10"
+                android:fontFamily="serif"
                 android:inputType="date"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/vh1"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
@@ -163,17 +182,21 @@
                 android:fontFamily="serif"
                 android:text="Address"
                 android:textColor="#000000"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/dateBirth" />
 
             <EditText
                 android:id="@+id/address"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_corner"
                 android:ems="10"
+                android:fontFamily="serif"
                 android:gravity="start|top"
                 android:inputType="textMultiLine"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/vh1"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -183,21 +206,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
                 android:fontFamily="serif"
                 android:text="Medical ID"
                 android:textColor="#000000"
+                android:textSize="17sp"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/address" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
+                android:fontFamily="serif"
                 android:inputType="textPersonName"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toStartOf="@+id/vh1"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 app:layout_constraintTop_toBottomOf="@+id/textView7" />
 

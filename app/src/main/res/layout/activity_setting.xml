@@ -38,7 +38,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="252dp"
         android:layout_height="467dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
@@ -77,7 +77,9 @@
                 android:id="@+id/Women_scream"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Women Scream" />
+                android:text="Women Scream"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
             <Space
                 android:layout_width="match_parent"
@@ -87,7 +89,9 @@
                 android:id="@+id/Siren"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Siren" />
+                android:text="Siren"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
         </RadioGroup>
     </LinearLayout>
@@ -100,6 +104,7 @@
         android:fontFamily="serif-bold"
         android:textAlignment="center"
         android:textColor="#000000"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"

@@ -22,6 +22,9 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
     public void ListPeriod(Period period){
         Start.setText(period.getStart_date());
         End.setText(period.getEnd_date());
+
         //Period_Lenght.
+        Period_Lenght.setText(period.getPeriodLength());
+        Cycle_Lenght.setText("0");
     }
 }

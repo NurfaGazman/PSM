@@ -201,7 +201,6 @@ public class ManagedContact extends AppCompatActivity {
         requestQueue.add(requestController);
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();

@@ -17,38 +17,40 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 
-public class Period {
+public class Period {       //class
 
-    private int user_Id;
-    private int period_Id;
-    private String start_date;
-    private String end_date;
-    private CalendarDay start;
-    private CalendarDay end;
-    private Integer highlight;
+    private int user_Id;    //attibute
+    private int period_Id;  //attribute
+    private String start_date;     //attibute
+    private String end_date;       //attribute
+    private CalendarDay start;      //attribute
+    private CalendarDay end;        //attribute
+    private Integer highlight;      //attribute
 
 
     //bahagian calculation
-    private LocalDate date_start;
-    private LocalDate date_end;
+    private LocalDate date_start;    //attribute
+    private LocalDate date_end;        //attribute
 
     public Period(){
         //default value utk tau ni bukan dari database
 
-        period_Id = -1;
+        period_Id = -1;  //variable
 
     }
 
 public Period(String start_date,int day){
-    setStart_date(start_date);
+    setStart_date(start_date); //panggil method
     setEnd_date(date_start.plusDays(day).toString("yyyy-MM-dd"));
 
 }
-    public Integer getHighlight() {
-        return highlight;
+    public Integer getHighlight() {  //method
+
+        return highlight; //variable
     }
 
     public void setHighlight(Integer highlight) {
+
         this.highlight = highlight;
     }
 
@@ -181,18 +183,34 @@ public Period(String start_date,int day){
             }
         };
     }
-//sambung esok!
+
+
     //kira period length
  public int getPeriodLength (){
+        //length define variable , type int kalau data xkira store dia akan return -1. sebb tu guna -1.
+        //kalau ad kiraan akan berubah data, klau xdak, akan return -1
         int length = -1;
 
         if(date_start != null && date_end != null){
             //end date  start klu xnull msuk
-            //length = Math.abs(Days.daysBetween(localDate,date_start).getDays());
-            //
+
+
+            //xsimpan return obj
+            //method chaining(panggil method)return type tu pnggil method. mcm multiple method tp pnggil 1 line.
+            ///length = Math.abs(Days.daysBetween(date_end,date_start).getDays());
+            //length =
+
+            //simpan dalam memory .
+            //simpan pastu panggil method. beza return daybetween sama ad simpn or x ja.
+            Days days = Days.daysBetween(date_end,date_start);
+            length = days.getDays();
+            length = Math.abs(length);
+
+
+
 
         }
         return length;
- }
+    }
 
 }
