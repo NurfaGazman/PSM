@@ -59,7 +59,7 @@ public class InsertPeriod extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
 
         period = new Period();
-        //load period daripd history.
+        //load period daripada history.
         if(period.getPeriod_Id() == -1){
             //insert
             binding.Periodtitle.setText("Insert Date" );

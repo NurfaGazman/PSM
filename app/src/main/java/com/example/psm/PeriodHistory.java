@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Request;
@@ -41,6 +42,9 @@ public class PeriodHistory extends AppCompatActivity {
     private SweetAlert swal;
     private Vector<Period> period;
     private PeriodController periodController;
+
+    //display data
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,15 +81,20 @@ public class PeriodHistory extends AppCompatActivity {
     }
     public void loadList(){
         period.clear();
+
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period", null, token,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {   //success
+
                         try {
                             JSONArray jsonArray = new JSONArray(response);
 
+                            Log.d("Test",""+jsonArray.length());
+
                             for(int i=0; i <jsonArray.length(); i ++){
+                                Log.d("Test",""+i);
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                                 Period periodList = new Period();
 
@@ -93,19 +102,32 @@ public class PeriodHistory extends AppCompatActivity {
                                     periodList.setStart_date(jsonObject.getString("start_date"));
 
                                 if(!jsonObject.isNull("end_date"))
-                                   periodList.setStart_date(jsonObject.getString("end_date"));
+                                   periodList.setEnd_date(jsonObject.getString("end_date"));
 
                                 if(!jsonObject.isNull("user_id"))
-                                    periodList.setStart_date(jsonObject.getString("user_id"));
+                                    periodList.setUser_Id(jsonObject.getInt("user_id"));
 
                                 if(!jsonObject.isNull("period_id"))
-                                    periodList.setStart_date(jsonObject.getString("period_id"));
+                                    periodList.setPeriod_Id(jsonObject.getInt("period_id"));
 
 
                                 period.add(periodList);
-                                periodController.notifyDataSetChanged();
+
 
                             }
+
+                            for(int i=0; i<period.size()-1; i++){
+                                //get utk access specific
+
+                                    period.get(i).CalculateCycleLength(period.get(i+1));
+
+                            }
+
+                            Period Dummy = new Period();
+                            Dummy.isHeader(true);
+                            period.insertElementAt(Dummy,0);
+
+                            periodController.notifyDataSetChanged();
 
 
                         } catch (JSONException e) {

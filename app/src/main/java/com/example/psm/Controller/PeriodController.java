@@ -18,17 +18,16 @@ import java.util.Vector;
 public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
     private final LayoutInflater layoutInflater;
-    private final Vector<Period> period;
+    private final Vector<Period> periods;
     private PeriodClick periodClick = null;
 
-    public PeriodController(LayoutInflater layoutInflater, Vector<Period> period, PeriodClick periodClick) {
+    public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
-        this.period = period;
+        this.periods = periods;
         this.periodClick = periodClick;
     }
 
     @NonNull
-
     @Override
     public ViewPeriod onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewPeriod(layoutInflater.inflate(R.layout.period_item,parent,false));
@@ -37,12 +36,12 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewPeriod holder, int position) {
-        holder.ListPeriod(period.get(position));
+        holder.ListPeriod(periods.get(position));
         if(periodClick != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    periodClick.clickPeriod(period.get(holder.getAdapterPosition()));
+                    periodClick.clickPeriod(periods.get(holder.getAdapterPosition()));
                 }
             });
         }
@@ -51,7 +50,7 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     @Override
     public int getItemCount()
     {
-        return period.size();
+        return periods.size();
     }
 
 }

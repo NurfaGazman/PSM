@@ -9,22 +9,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.psm.R;
 
 public class ViewPeriod extends RecyclerView.ViewHolder {
-    private final TextView Start,End,Period_Lenght,Cycle_Lenght;
-
+    private final TextView Start,End,PeriodList,cycleList;
+//display data
     public ViewPeriod(@NonNull View itemView) {
         super(itemView);
         this.Start = itemView.findViewById(R.id.start);
         this.End = itemView.findViewById(R.id.end);
-        this.Period_Lenght = itemView.findViewById(R.id.periodLenghtList);
-        this.Cycle_Lenght = itemView.findViewById(R.id.cycleLenghtList);
+        this.PeriodList = itemView.findViewById(R.id.periodLenghtList);
+        this.cycleList = itemView.findViewById(R.id.cycleLenghtList);
 
     }
     public void ListPeriod(Period period){
-        Start.setText(period.getStart_date());
-        End.setText(period.getEnd_date());
 
-        //Period_Lenght.
-        Period_Lenght.setText(period.getPeriodLength());
-        Cycle_Lenght.setText("0");
+        if(period.isHeader()){
+            Start.setText("Start Date");
+            End.setText("End Date");
+            PeriodList.setText("Period Length");
+            cycleList.setText("Cycle Length");
+
+            //display data
+        }else{
+            Start.setText(period.getStart_date());
+            End.setText(period.getEnd_date());
+
+            //Period_Lenght.
+            cycleList.setText("0");
+            if(period.getCycleLength()==-1){
+                //xdak data
+                cycleList.setText("No Data");
+            }else{
+                //ad data masuk
+                //method chaning
+                cycleList.setText(String.valueOf(period.getCycleLength()));
+            }
+
+            String s = String.valueOf(period.getPeriodLength());
+            PeriodList.setText(s);
+        }
+
+
     }
 }

@@ -3,6 +3,7 @@ package com.example.psm.Model;
 import android.graphics.Color;
 import android.widget.Toast;
 
+import com.example.psm.Controller.Row;
 import com.example.psm.PeriodHome;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -17,7 +18,7 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 
-public class Period {       //class
+public class Period extends Row {       //class
 
     private int user_Id;    //attibute
     private int period_Id;  //attribute
@@ -27,15 +28,21 @@ public class Period {       //class
     private CalendarDay end;        //attribute
     private Integer highlight;      //attribute
 
+    //cycleLength
+    //declared 1 attribute
+    private int cycleLength;
+
 
     //bahagian calculation
     private LocalDate date_start;    //attribute
     private LocalDate date_end;        //attribute
 
-    public Period(){
+    public Period(){ //constructor
+
         //default value utk tau ni bukan dari database
 
         period_Id = -1;  //variable
+        cycleLength = -1;
 
     }
 
@@ -204,13 +211,30 @@ public Period(String start_date,int day){
             //simpan pastu panggil method. beza return daybetween sama ad simpn or x ja.
             Days days = Days.daysBetween(date_end,date_start);
             length = days.getDays();
-            length = Math.abs(length);
-
-
-
+            length = Math.abs(length)+1;
 
         }
         return length;
     }
 
+    public int getCycleLength(){
+        return cycleLength;
+    }
+
+//calculate cycleLength
+    public void CalculateCycleLength(Period nextPeriod){
+
+        //declare variable assign -1
+
+        cycleLength = -1;
+
+
+        if(date_start != null && nextPeriod !=null){
+
+            Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);
+            cycleLength = days.getDays();
+            cycleLength = Math.abs(cycleLength);
+        }
+
+    }
 }
