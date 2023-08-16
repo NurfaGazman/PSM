@@ -66,15 +66,16 @@ public class PeriodHistory extends AppCompatActivity {
             public void clickPeriod(Period period) {
                 Intent editPeriod = new Intent(PeriodHistory.this,InsertPeriod.class);
                 editPeriod.putExtra("periodId",period.getPeriod_Id());
-                startActivity(editPeriod);
                 //tambah sini 15/8
                 startActivity(editPeriod);
-
             }
         });
         //requestQueue.add(requestController);
         binding.listPeriod.setAdapter(periodController);
         binding.listPeriod.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        //tambahan 16/8
+          binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
     }
 
     public void goToNewRecord(View view){
@@ -111,7 +112,6 @@ public class PeriodHistory extends AppCompatActivity {
 
                                 if(!jsonObject.isNull("period_id"))
                                     periodList.setPeriod_Id(jsonObject.getInt("period_id"));
-
 
                                 period.add(periodList);
 

@@ -67,7 +67,7 @@ public class InsertPeriod extends AppCompatActivity {
         //tambahan 15/8
         Intent edit = getIntent();
         periodId = edit.getIntExtra("periodId", -1);
-        startActivity(edit);
+
 
         if(period.getPeriod_Id() == -1){
             //insert
@@ -86,7 +86,6 @@ public class InsertPeriod extends AppCompatActivity {
         //setiap kali guna token copy yang ini
         SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token",null);
-
         binding.btnSavePeriod.setOnClickListener(this::SavePeriod);
 
         //date picker utk start date
@@ -171,7 +170,6 @@ public class InsertPeriod extends AppCompatActivity {
 
         datePickerDialog.show();
     }
-
 
 
 
