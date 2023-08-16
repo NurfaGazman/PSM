@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.example.psm.Controller.PeriodController;
 import com.example.psm.Controller.RequestController;
 import com.example.psm.Controller.SweetAlert;
 import com.example.psm.Model.Period;
@@ -40,12 +42,13 @@ public class InsertPeriod extends AppCompatActivity {
     private SweetAlert swal;
     private DatePickerDialog datePickerDialog;
 
+    //tambahan 15/8
+    private int periodId;
+
     private Period period;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
         super.onCreate(savedInstanceState);
         binding = ActivityInsertPeriodBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -53,13 +56,19 @@ public class InsertPeriod extends AppCompatActivity {
 
         binding.btnDeletePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
         binding.btnSavePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
-        requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        swal=new SweetAlert();
-        getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
+        swal = new SweetAlert();
+        getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(), swal).commit();
 
         period = new Period();
         //load period daripada history.
+
+        //tambahan 15/8
+        Intent edit = getIntent();
+        periodId = edit.getIntExtra("periodId", -1);
+        startActivity(edit);
+
         if(period.getPeriod_Id() == -1){
             //insert
             binding.Periodtitle.setText("Insert Date" );
@@ -69,6 +78,9 @@ public class InsertPeriod extends AppCompatActivity {
             //user tgh edit
             binding.Periodtitle.setText("Edit Period");
             binding.btnDeletePeriod.setVisibility(View.VISIBLE);
+
+            //tambahan 15/8
+            loadPeriodData(); //loadPeriod
         }
 
         //setiap kali guna token copy yang ini
@@ -94,7 +106,7 @@ public class InsertPeriod extends AppCompatActivity {
         });
 
     }
-//start date picker
+    //start date picker
     private void fnInvokeDatePickerStart() {
         final Calendar cldr = Calendar.getInstance();
         int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -125,7 +137,7 @@ public class InsertPeriod extends AppCompatActivity {
     }
 
 
-//End date picker
+    //End date picker
     private void fnInvokeDatePickerEnd() {
         final Calendar cldr = Calendar.getInstance();
         int day = cldr.get(Calendar.DAY_OF_MONTH);
@@ -160,35 +172,91 @@ public class InsertPeriod extends AppCompatActivity {
         datePickerDialog.show();
     }
 
+
+
+
     public void SavePeriod(View view){
         JSONObject body = new JSONObject();
-//body bentuk dalam JsonObject
-    try{
-        body.put("start_date",binding.startDate.getText().toString());
-        body.put("end_date", binding.EndDate.getText().toString());
+        //body bentuk dalam JsonObject
 
-        RequestController requestController = new RequestController(Request.Method.POST,
-                "/api/Period", body, token,
+
+        try{
+            body.put("start_date",binding.startDate.getText().toString());
+            body.put("end_date", binding.EndDate.getText().toString());
+
+            RequestController requestController;
+
+            if(periodId == -1){
+                requestController = new RequestController(Request.Method.POST,
+                        "/api/Period", body, token,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {   //success
+                                swal.show("","Success", SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        },
+
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) { //error
+                                swal.show("","ERROR", SweetAlertDialog.ERROR_TYPE);
+                            }
+                        });
+
+            }else{
+                //edit
+                requestController = new RequestController(Request.Method.PUT,
+                        "/api/Period" +periodId, body, token,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {   //success
+                                swal.show("","Update Success", SweetAlertDialog.SUCCESS_TYPE);
+                            }
+                        },
+
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) { //error
+                                swal.show("","ERROR", SweetAlertDialog.ERROR_TYPE);
+                            }
+                        });
+            }
+
+            requestQueue.add(requestController);
+
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+    }
+
+
+    private void loadPeriodData() {
+        RequestController requestController = new RequestController(Request.Method.GET,
+                "/api/Period/" + periodId, null, token,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {   //success
 
-                        swal.show("","Success", SweetAlertDialog.SUCCESS_TYPE);
-                    }
-                },
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String startDate = jsonObject.optString("start_date");
+                            String endDate = jsonObject.optString("end_date");
 
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) { //error
-                        swal.show("","ERROR", SweetAlertDialog.ERROR_TYPE);
+                            binding.startDate.setText(startDate);
+                            binding.EndDate.setText(endDate);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-                });
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                swal.show("Failed", "Invalid", SweetAlertDialog.ERROR_TYPE);
+            }
+        });
 
         requestQueue.add(requestController);
-
-    }catch (JSONException e){
-            e.printStackTrace();
-    }
-
     }
 }

@@ -44,6 +44,7 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
                     periodClick.clickPeriod(periods.get(holder.getAdapterPosition()));
                 }
             });
+
         }
     }
 

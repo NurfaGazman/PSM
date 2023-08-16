@@ -67,7 +67,7 @@
             <EditText
                 android:id="@+id/FullName"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/rounded_corner"
                 android:ems="10"
@@ -163,7 +163,7 @@
             <EditText
                 android:id="@+id/dateBirth"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corner"
                 android:ems="10"
@@ -189,7 +189,7 @@
             <EditText
                 android:id="@+id/address"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/rounded_corner"
                 android:ems="10"
@@ -217,8 +217,9 @@
             <EditText
                 android:id="@+id/editTextTextPersonName2"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/rounded_corner"
                 android:ems="10"
                 android:fontFamily="serif"
                 android:inputType="textPersonName"
@@ -232,7 +233,7 @@
                 android:id="@+id/btnSave"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:text="Save"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

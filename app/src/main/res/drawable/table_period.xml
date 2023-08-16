@@ -3,7 +3,7 @@
     <item>
         <shape android:shape="rectangle">
             <!-- Background color of the TextView -->
-            <solid android:color="#FF1493" />
+            <solid android:color="#FD90AD" />
             <!-- Border color and width -->
             <stroke
             android:width="2dp"
@@ -14,4 +14,6 @@
         </shape>
     </item>
 </layer-list>
+
+
 
