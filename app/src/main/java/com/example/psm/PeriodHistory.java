@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,6 +27,7 @@ import com.example.psm.databinding.ActivityHomepageBinding;
 import com.example.psm.databinding.ActivityPeriodHistoryBinding;
 import com.example.psm.databinding.ActivityPeriodHomeBinding;
 
+import org.jetbrains.annotations.Nullable;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +43,7 @@ public class PeriodHistory extends AppCompatActivity {
     private SweetAlert swal;
     private Vector<Period> period;
     private PeriodController periodController;
+
 
     //display data
 
@@ -64,10 +67,11 @@ public class PeriodHistory extends AppCompatActivity {
         periodController = new PeriodController(getLayoutInflater(), period, new PeriodClick() {
             @Override
             public void clickPeriod(Period period) {
-                Intent editPeriod = new Intent(PeriodHistory.this,InsertPeriod.class);
-                editPeriod.putExtra("periodId",period.getPeriod_Id());
-                //tambah sini 15/8
+              Intent editPeriod = new Intent(PeriodHistory.this,InsertPeriod.class);
+              editPeriod.putExtra("period_Id",period.getPeriod_Id());
+//                //tambah sini 15/8
                 startActivity(editPeriod);
+
             }
         });
         //requestQueue.add(requestController);
@@ -78,7 +82,7 @@ public class PeriodHistory extends AppCompatActivity {
           binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
     }
 
-    public void goToNewRecord(View view){
+        public void goToNewRecord(View view){
         Intent intent = new Intent(PeriodHistory.this, InsertPeriod.class);  //panggilPage
         startActivity(intent);
     }
@@ -86,7 +90,7 @@ public class PeriodHistory extends AppCompatActivity {
         period.clear();
 
         RequestController requestController = new RequestController(Request.Method.GET,
-                "/api/Period", null, token,
+                "/api/Period" , null, token,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {   //success
@@ -107,11 +111,11 @@ public class PeriodHistory extends AppCompatActivity {
                                 if(!jsonObject.isNull("end_date"))
                                     periodList.setEnd_date(jsonObject.getString("end_date"));
 
-                                if(!jsonObject.isNull("user_id"))
-                                    periodList.setUser_Id(jsonObject.getInt("user_id"));
+                                if(!jsonObject.isNull("user_Id"))
+                                    periodList.setUser_Id(jsonObject.getInt("user_Id"));
 
-                                if(!jsonObject.isNull("period_id"))
-                                    periodList.setPeriod_Id(jsonObject.getInt("period_id"));
+                                if(!jsonObject.isNull("period_Id"))
+                                    periodList.setPeriod_Id(jsonObject.getInt("period_Id"));
 
                                 period.add(periodList);
 
@@ -142,6 +146,7 @@ public class PeriodHistory extends AppCompatActivity {
                 swal.show("Failed","Invalid", SweetAlertDialog.ERROR_TYPE);
             }
         });
+
         requestQueue.add(requestController);
     }
     @Override

@@ -2,6 +2,7 @@ package com.example.psm.Model;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,9 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
             cycleList.setText("Cycle Length");
 
             //display data
+
         }else{
+
             Start.setText(period.getStart_date());
             End.setText(period.getEnd_date());
 

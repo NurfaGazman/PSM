@@ -3,6 +3,7 @@ package com.example.psm.Controller;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,9 @@ import com.example.psm.R;
 
 import java.util.List;
 import java.util.Vector;
+
+//explain
+//req controller xdak kena mengena dgn class lain. clASS lain yang guna req controller
 
 public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
@@ -34,15 +38,23 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewPeriod holder, int position) {
+
+
         holder.ListPeriod(periods.get(position));
+
         if(periodClick != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+
                     periodClick.clickPeriod(periods.get(holder.getAdapterPosition()));
+
                 }
+
             });
 
         }

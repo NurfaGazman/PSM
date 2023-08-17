@@ -134,7 +134,6 @@ public Period(String start_date,int day){
     public String getEnd_date() {
         return end_date;
     }
-
     public void setEnd_date(String end_date) {
         this.end_date = end_date;
         setDate_end(new LocalDate(end_date));
@@ -237,4 +236,5 @@ public Period(String start_date,int day){
         }
 
     }
+
 }
