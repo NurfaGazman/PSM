@@ -57,7 +57,7 @@ public class InsertPeriod extends AppCompatActivity {
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
 
-        
+
         // Set button colors
         binding.btnDeletePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
         binding.btnSavePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
@@ -97,8 +97,10 @@ public class InsertPeriod extends AppCompatActivity {
         }
 
         //setiap kali guna token copy yang ini
-
         binding.btnSavePeriod.setOnClickListener(this::SavePeriod);
+
+        //button delete
+        binding.btnDeletePeriod.setOnClickListener(this::DeletePeriod);
 
 
         //date picker utk start date
@@ -174,7 +176,6 @@ public class InsertPeriod extends AppCompatActivity {
         }, year, month, day);
 
 //limitation date utk end date
-
         String startDate = binding.startDate.getText().toString();
         if(!startDate.isEmpty()){
             LocalDate localDate = new LocalDate(startDate);
@@ -185,7 +186,7 @@ public class InsertPeriod extends AppCompatActivity {
     }
 
 
-
+//savebutton period after edit
     public void SavePeriod(View view){
         JSONObject body = new JSONObject();
         //body bentuk dalam JsonObject
@@ -230,7 +231,9 @@ public class InsertPeriod extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {   //success
                                 swal.show("","Update Success", SweetAlertDialog.SUCCESS_TYPE);
-
+                                    //clear textview after
+                                binding.startDate.setText("");
+                                binding.EndDate.setText("");
                             }
                         },
 
@@ -249,7 +252,7 @@ public class InsertPeriod extends AppCompatActivity {
         }
     }
 
-    //loadperioddata
+    //loadPeriodData
     private void loadPeriodData() {
 
         RequestController requestController = new RequestController(Request.Method.GET,
@@ -315,5 +318,33 @@ public class InsertPeriod extends AppCompatActivity {
 
         requestQueue.add(requestController);
     }
+
+    //delete function
+    public void DeletePeriod(View view){
+        RequestController requestController = new RequestController(Request.Method.DELETE,
+                "/api/Period/"+period.getPeriod_Id(), null, token,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {   //success
+
+                        swal.show("Delete", "Success", SweetAlertDialog.SUCCESS_TYPE);
+                        //clear textview
+                        binding.startDate.setText("");
+                        binding.EndDate.setText("");
+                    }
+                },
+
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) { //error
+                        swal.show("Failed", "Invalid delete", SweetAlertDialog.ERROR_TYPE);
+
+                    }
+                });
+
+        requestQueue.add(requestController);
+
+    }
+
 
 }
