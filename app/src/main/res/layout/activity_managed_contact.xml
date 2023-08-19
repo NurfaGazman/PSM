@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1D2D2"
+    android:background="@drawable/background"
     tools:context=".ManagedContact">
 
     <androidx.constraintlayout.widget.Guideline
@@ -146,7 +146,7 @@
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
-        android:hint="insert contact number"
+        android:hint="Insert contact number"
         android:inputType="textPersonName"
         android:textColorHint="#4D000000"
         android:textSize="15sp"
@@ -163,7 +163,7 @@
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
-        android:hint="insert name"
+        android:hint="Insert name"
         android:inputType="textPersonName"
         android:textColorHint="#4D000000"
         android:textSize="15sp"

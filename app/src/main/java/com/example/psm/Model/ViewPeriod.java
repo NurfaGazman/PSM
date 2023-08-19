@@ -14,6 +14,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
 //display data
     public ViewPeriod(@NonNull View itemView) {
         super(itemView);
+
         this.Start = itemView.findViewById(R.id.start);
         this.End = itemView.findViewById(R.id.end);
         this.PeriodList = itemView.findViewById(R.id.periodLenghtList);
@@ -23,6 +24,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
     public void ListPeriod(Period period){
 
         if(period.isHeader()){
+
             Start.setText("Start Date");
             End.setText("End Date");
             PeriodList.setText("Period Length");

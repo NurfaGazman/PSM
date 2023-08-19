@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.button.setBackgroundColor(Color.parseColor("#db5a6b"));
+        binding.button.setBackgroundColor(Color.parseColor("#F42B82"));
 
 
         //clicktext signUp(id) and forgot password

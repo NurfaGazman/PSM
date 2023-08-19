@@ -44,7 +44,7 @@ public class Register extends AppCompatActivity {
         binding = ActivityRegister2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
-        binding.btnSignup.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
+        binding.btnSignup.setBackgroundColor(Color.parseColor("#F42B82"));  //color button
 
         //assign
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;

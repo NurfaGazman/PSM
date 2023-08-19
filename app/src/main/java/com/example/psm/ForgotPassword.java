@@ -40,7 +40,7 @@ public class ForgotPassword extends AppCompatActivity {
 
         binding = ActivityForgotPasswordBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.btnSendEmail.setBackgroundColor(Color.parseColor("#db5a6b"));
+        binding.btnSendEmail.setBackgroundColor(Color.parseColor("#F42B82"));
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal2.getId(),swal).commit();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton

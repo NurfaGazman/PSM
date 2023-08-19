@@ -51,7 +51,7 @@ public class ManagedContact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityManagedContactBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.btnAddNo.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
+        binding.btnAddNo.setBackgroundColor(Color.parseColor("#F42B82"));  //color button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //panggil button
 
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;

@@ -59,8 +59,8 @@ public class InsertPeriod extends AppCompatActivity {
 
 
         // Set button colors
-        binding.btnDeletePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
-        binding.btnSavePeriod.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
+        binding.btnDeletePeriod.setBackgroundColor(Color.parseColor("#F42B82"));  //color button
+        binding.btnSavePeriod.setBackgroundColor(Color.parseColor("#F42B82"));  //color button
 
         //req queue utk network req
         requestQueue = Volley.newRequestQueue(this);
@@ -120,6 +120,7 @@ public class InsertPeriod extends AppCompatActivity {
         });
 
     }
+
     //start date picker
     private void fnInvokeDatePickerStart() {
         final Calendar cldr = Calendar.getInstance();
@@ -206,6 +207,13 @@ public class InsertPeriod extends AppCompatActivity {
                             @Override
                             public void onResponse(String response) {   //success
                                 swal.show("","Success", SweetAlertDialog.SUCCESS_TYPE);
+                                //clear textview
+                                binding.startDate.setText("");
+                                binding.EndDate.setText("");
+
+                                Intent intent = new Intent(InsertPeriod.this, PeriodHistory.class);
+                                startActivity(intent);
+                                finish(); // Close the current activity
                             }
                         },
 
@@ -234,6 +242,10 @@ public class InsertPeriod extends AppCompatActivity {
                                     //clear textview after
                                 binding.startDate.setText("");
                                 binding.EndDate.setText("");
+
+                                Intent intent = new Intent(InsertPeriod.this, PeriodHistory.class);
+                                startActivity(intent);
+                                finish(); // Close the current activity
                             }
                         },
 
@@ -331,6 +343,11 @@ public class InsertPeriod extends AppCompatActivity {
                         //clear textview
                         binding.startDate.setText("");
                         binding.EndDate.setText("");
+
+                        // Navigate back to PeriodHistory activity
+                        Intent intent = new Intent(InsertPeriod.this, PeriodHistory.class);
+                        startActivity(intent);
+                        finish(); // Close the current activity
                     }
                 },
 
@@ -345,6 +362,5 @@ public class InsertPeriod extends AppCompatActivity {
         requestQueue.add(requestController);
 
     }
-
 
 }
