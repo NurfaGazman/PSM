@@ -217,6 +217,7 @@ public Period(String start_date,int day){
     }
 
     public int getCycleLength(){
+
         return cycleLength;
     }
 
@@ -226,8 +227,6 @@ public Period(String start_date,int day){
         //declare variable assign -1
 
         cycleLength = -1;
-
-
         if(date_start != null && nextPeriod !=null){
 
             Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);

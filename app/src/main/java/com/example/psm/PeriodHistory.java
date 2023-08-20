@@ -28,6 +28,7 @@ import com.example.psm.databinding.ActivityPeriodHistoryBinding;
 import com.example.psm.databinding.ActivityPeriodHomeBinding;
 
 import org.jetbrains.annotations.Nullable;
+import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,12 @@ public class PeriodHistory extends AppCompatActivity {
     private SweetAlert swal;
     private Vector<Period> period;
     private PeriodController periodController;
+
+    //tambahan 20/8
+    private int totalCycleLength = 0;
+    private int totalPeriodLength = 0;
+    private int numberofPeriod = 0;
+
 
 
     //display data
@@ -85,9 +92,17 @@ public class PeriodHistory extends AppCompatActivity {
         public void goToNewRecord(View view){
         Intent intent = new Intent(PeriodHistory.this, InsertPeriod.class);  //panggilPage
         startActivity(intent);
+
+
+
     }
+
+
     public void loadList(){
         period.clear();
+
+    //tambahan 20/8
+
 
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period" , null, token,
@@ -99,6 +114,9 @@ public class PeriodHistory extends AppCompatActivity {
                             JSONArray jsonArray = new JSONArray(response);
 
                             Log.d("Test",""+jsonArray.length());
+
+                            totalCycleLength = 0;
+                            totalPeriodLength = 0;
 
                             for(int i=0; i <jsonArray.length(); i ++) {
                                 Log.d("Test", "" + i);
@@ -127,6 +145,13 @@ public class PeriodHistory extends AppCompatActivity {
 
                                 period.get(i).CalculateCycleLength(period.get(i+1));
 
+                                //tambahan 20/8
+                                int cycleLength = period.get(i).getCycleLength();
+                                int periodLength = period.get(i).getPeriodLength();
+
+                                totalCycleLength += cycleLength;
+                                totalPeriodLength += periodLength;
+
                             }
 
                             Period Dummy = new Period();
@@ -134,6 +159,10 @@ public class PeriodHistory extends AppCompatActivity {
                             period.insertElementAt(Dummy,0);
 
                             periodController.notifyDataSetChanged();
+
+                            //tambahan 20/9
+                            int averageCycleLength = totalCycleLength / (period.size()-1);
+                            int averagePeriodLength = totalPeriodLength / (period.size() -1);
 
 
                         } catch (JSONException e) {
@@ -154,4 +183,5 @@ public class PeriodHistory extends AppCompatActivity {
         super.onStart();
         loadList();
     }
+
 }
