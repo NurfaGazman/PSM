@@ -25,6 +25,32 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     private final Vector<Period> periods;
     private PeriodClick periodClick = null;
 
+
+    //tambahan 20/8
+    private int totalCycleLength = 0;
+    private int totalPeriodLength = 0;
+
+    //tambahan 20/8
+    public int calculateAverageCycleLength(){
+        if (periods.size() >0){
+            return totalCycleLength / periods.size();
+        }
+        return 0;
+    }
+
+    public int calculateAveragePeriodLength(){
+        if (periods.size() > 0){
+            return totalPeriodLength / periods.size();
+        }
+        return 0;
+    }
+
+
+
+
+
+
+
     public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
         this.periods = periods;

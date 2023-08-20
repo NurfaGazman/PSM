@@ -37,7 +37,6 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
             Start.setText(period.getStart_date());
             End.setText(period.getEnd_date());
 
-            //Period_Lenght.
             cycleList.setText("0");
             if(period.getCycleLength()==-1){
                 //xdak data
@@ -51,7 +50,6 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
             String s = String.valueOf(period.getPeriodLength());
             PeriodList.setText(s);
         }
-
 
     }
 }

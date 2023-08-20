@@ -228,12 +228,12 @@ public Period(String start_date,int day){
 
         cycleLength = -1;
         if(date_start != null && nextPeriod !=null){
-
             Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);
             cycleLength = days.getDays();
             cycleLength = Math.abs(cycleLength);
         }
 
     }
+
 
 }
