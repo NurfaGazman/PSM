@@ -26,31 +26,6 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     private PeriodClick periodClick = null;
 
 
-    //tambahan 20/8
-    private int totalCycleLength = 0;
-    private int totalPeriodLength = 0;
-
-    //tambahan 20/8
-    public int calculateAverageCycleLength(){
-        if (periods.size() >0){
-            return totalCycleLength / periods.size();
-        }
-        return 0;
-    }
-
-    public int calculateAveragePeriodLength(){
-        if (periods.size() > 0){
-            return totalPeriodLength / periods.size();
-        }
-        return 0;
-    }
-
-
-
-
-
-
-
     public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
         this.periods = periods;
@@ -69,21 +44,21 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     public void onBindViewHolder(@NonNull ViewPeriod holder, int position) {
 
 
-        holder.ListPeriod(periods.get(position));
+//original code
+    holder.ListPeriod(periods.get(position));
 
-        if(periodClick != null){
+            if(periodClick != null){
             holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
 
+            periodClick.clickPeriod(periods.get(holder.getAdapterPosition()));
 
-                    periodClick.clickPeriod(periods.get(holder.getAdapterPosition()));
-
-                }
+               }
 
             });
 
-        }
+         }
     }
 
     @Override

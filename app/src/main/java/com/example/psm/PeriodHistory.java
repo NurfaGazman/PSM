@@ -45,9 +45,6 @@ public class PeriodHistory extends AppCompatActivity {
     private Vector<Period> period;
     private PeriodController periodController;
 
-//tambahan 20/8
-    private int totalCycleLength = 0;
-    private int totalPeriodLength = 0;
 
     //display data
 
@@ -91,14 +88,15 @@ public class PeriodHistory extends AppCompatActivity {
         startActivity(intent);
 
 
-
     }
-
 
 
     public void loadList(){
         period.clear();
 
+        //21/8
+        int totalCycleLength = 0;
+        int numCycle = 0;
 
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period" , null, token,
@@ -161,58 +159,11 @@ public class PeriodHistory extends AppCompatActivity {
     }
 
 
-    //tambahan 20/8
-    private void calculateTotals() {
-        totalCycleLength = 0;
-        totalPeriodLength = 0;
-
-        for (Period p : period) {
-            // Calculate
-            totalCycleLength += p.getCycleLength();
-            totalPeriodLength += p.getPeriodLength();
-        }
-    }
-
-    // Calculate averages and predict
-    private void calculateAndPredict() {
-        int numCycles = period.size() - 1;
-
-        if (numCycles > 0) {
-            int averageCycleLength = totalCycleLength / numCycles;
-            int averagePeriodLength = totalPeriodLength / period.size();
-
-            //display average
-            Log.d("Average Cycle Length", String.valueOf(averageCycleLength));
-            Log.d("Average Period Length", String.valueOf(averagePeriodLength));
-
-            Period RecentPeriod = period.get(period.size() - 1);
-            LocalDate startDate = RecentPeriod.getDate_start();
-
-            // Predict next period start and end dates
-            LocalDate predictedStartDate = startDate.plusDays(averageCycleLength);
-            LocalDate predictedEndDate = predictedStartDate.plusDays(averagePeriodLength);
-
-            Log.d("Predicted Start Date", predictedStartDate.toString());
-            Log.d("Predicted End Date", predictedEndDate.toString());
-
-
-        }
-    }
-
-//tambahan 20/8
-    //update
-    private void calculateAndPredictPeriods() {
-        calculateTotals();
-        calculateAndPredict();
-
-    }
-
-
     @Override
     protected void onStart() {
         super.onStart();
         loadList();
-        calculateAndPredictPeriods();
+
     }
 
 }

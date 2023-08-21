@@ -18,24 +18,23 @@ import org.joda.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 
-public class Period extends Row {       //class
+public class Period extends Row {
 
-    private int user_Id;    //attibute
-    private int period_Id;  //attribute
-    private String start_date;     //attibute
-    private String end_date;       //attribute
-    private CalendarDay start;      //attribute
-    private CalendarDay end;        //attribute
-    private Integer highlight;      //attribute
+    private int user_Id;
+    private int period_Id;
+    private String start_date;
+    private String end_date;
+    private CalendarDay start;
+    private CalendarDay end;
+    private Integer highlight;
 
     //cycleLength
-    //declared 1 attribute
     private int cycleLength;
 
 
     //bahagian calculation
-    private LocalDate date_start;    //attribute
-    private LocalDate date_end;        //attribute
+    private LocalDate date_start;
+    private LocalDate date_end;
 
     public Period(){ //constructor
 
@@ -234,6 +233,5 @@ public Period(String start_date,int day){
         }
 
     }
-
 
 }
