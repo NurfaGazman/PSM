@@ -2,7 +2,6 @@ package com.example.psm.Model;
 
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,8 +35,8 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
 
             Start.setText(period.getStart_date());
             End.setText(period.getEnd_date());
-
             cycleList.setText("0");
+
             if(period.getCycleLength()==-1){
                 //xdak data
                 cycleList.setText("No Data");
@@ -49,6 +48,20 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
 
             String s = String.valueOf(period.getPeriodLength());
             PeriodList.setText(s);
+
+
+            //tambahan average
+            // Calculate and display average cycle length
+            if (period.getCycleCount() > 0) {
+                int averageCycleLength = period.getAverageCycleLength();
+                if (averageCycleLength != -1) {
+                    cycleList.setText(String.valueOf(averageCycleLength));
+                }
+                //tambahan average
+            }else{
+                cycleList.setText("No Data");
+            }
+
         }
 
     }

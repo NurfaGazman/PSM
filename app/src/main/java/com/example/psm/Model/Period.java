@@ -31,6 +31,11 @@ public class Period extends Row {
     //cycleLength
     private int cycleLength;
 
+    //tambhan utk average
+    private int totalCycleLength;
+    private int cycleCount;
+
+
 
     //bahagian calculation
     private LocalDate date_start;
@@ -221,17 +226,35 @@ public Period(String start_date,int day){
     }
 
 //calculate cycleLength
+    //original
     public void CalculateCycleLength(Period nextPeriod){
 
         //declare variable assign -1
-
         cycleLength = -1;
         if(date_start != null && nextPeriod !=null){
             Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);
             cycleLength = days.getDays();
             cycleLength = Math.abs(cycleLength);
-        }
 
+
+            //tambahan average
+            if (cycleLength != -1) {
+                totalCycleLength += cycleLength;
+                cycleCount++;
+            }
+        }
     }
 
+    //tambahan average
+
+    public int getAverageCycleLength() {
+        if (cycleCount == 0) {
+            return -1; // No data
+        }
+        return totalCycleLength / cycleCount;
+    }
+
+    public int getCycleCount() {
+        return cycleCount;
+    }
 }

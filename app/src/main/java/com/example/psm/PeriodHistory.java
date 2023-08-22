@@ -45,7 +45,6 @@ public class PeriodHistory extends AppCompatActivity {
     private Vector<Period> period;
     private PeriodController periodController;
 
-
     //display data
 
     @Override
@@ -75,6 +74,7 @@ public class PeriodHistory extends AppCompatActivity {
 
             }
         });
+
         //requestQueue.add(requestController);
         binding.listPeriod.setAdapter(periodController);
         binding.listPeriod.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -90,13 +90,8 @@ public class PeriodHistory extends AppCompatActivity {
 
     }
 
-
     public void loadList(){
         period.clear();
-
-        //21/8
-        int totalCycleLength = 0;
-        int numCycle = 0;
 
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period" , null, token,
@@ -135,7 +130,6 @@ public class PeriodHistory extends AppCompatActivity {
                                 //get utk access specific
                                 period.get(i).CalculateCycleLength(period.get(i+1));
 
-
                             }
 
                             Period Dummy = new Period();
@@ -158,12 +152,11 @@ public class PeriodHistory extends AppCompatActivity {
         requestQueue.add(requestController);
     }
 
-
     @Override
     protected void onStart() {
         super.onStart();
         loadList();
 
-    }
 
+    }
 }

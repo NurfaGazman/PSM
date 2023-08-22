@@ -26,6 +26,7 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     private PeriodClick periodClick = null;
 
 
+
     public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
         this.periods = periods;
@@ -42,7 +43,6 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewPeriod holder, int position) {
-
 
 //original code
     holder.ListPeriod(periods.get(position));
@@ -61,10 +61,14 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
          }
     }
 
+
+
+
     @Override
     public int getItemCount()
     {
         return periods.size();
     }
+
 
 }
