@@ -2,6 +2,7 @@ package com.example.psm.Model;
 
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,9 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
 
 
     }
+    public static int total = 0;
+    public static int count= 0;
+
     public void ListPeriod(Period period){
 
         if(period.isHeader()){
@@ -44,6 +48,10 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
                 //ad data masuk
                 //method chaning
                 cycleList.setText(String.valueOf(period.getCycleLength()));
+
+                total += period.getCycleLength();
+                count ++;
+
             }
 
             String s = String.valueOf(period.getPeriodLength());
@@ -59,7 +67,9 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
                 }
                 //tambahan average
             }else{
-                cycleList.setText("No Data");
+                int average = total / count;
+                cycleList.setText("Average : "+average);
+
             }
 
         }

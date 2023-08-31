@@ -16,6 +16,8 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Calendar;
+import java.util.List;
+import java.util.Vector;
 
 
 public class Period extends Row {
@@ -204,7 +206,6 @@ public Period(String start_date,int day){
         if(date_start != null && date_end != null){
             //end date  start klu xnull msuk
 
-
             //xsimpan return obj
             //method chaining(panggil method)return type tu pnggil method. mcm multiple method tp pnggil 1 line.
             ///length = Math.abs(Days.daysBetween(date_end,date_start).getDays());
@@ -241,15 +242,37 @@ public Period(String start_date,int day){
             if (cycleLength != -1) {
                 totalCycleLength += cycleLength;
                 cycleCount++;
+
             }
+
         }
+
     }
 
     //tambahan average
+    public double calculateAverageCycleLength(List<Period> periods) {
+        int totalCycleLength = 0;
+        int cycleCount = 0;
 
+        for (int i = 0; i < periods.size() - 1; i++) {
+            Period currentPeriod = periods.get(i);
+            Period nextPeriod = periods.get(i + 1);
+
+            if (currentPeriod.getCycleLength() != -1 && nextPeriod.getCycleLength() != -1) {
+                totalCycleLength += currentPeriod.getCycleLength();
+                cycleCount++;
+            }
+        }
+
+        if (cycleCount == 0) {
+            return -1; // No data available
+        }
+
+        return (double) totalCycleLength / cycleCount;
+    }
     public int getAverageCycleLength() {
         if (cycleCount == 0) {
-            return -1; // No data
+            return -1; // No data available
         }
         return totalCycleLength / cycleCount;
     }
