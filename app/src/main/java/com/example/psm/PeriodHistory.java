@@ -136,6 +136,7 @@ public class PeriodHistory extends AppCompatActivity {
 
                             }
 
+                           
 
                             for(int i=0; i<period.size()-1; i++){
                                 //get utk access specific
