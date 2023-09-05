@@ -61,7 +61,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
             //tambahan average
             // Calculate and display average cycle length
             if (period.getCycleCount() > 0) {
-                int averageCycleLength = period.getAverageCycleLength();
+                int averageCycleLength = period.getCycleLength();
                 if (averageCycleLength != -1) {
                     cycleList.setText(String.valueOf(averageCycleLength));
                 }

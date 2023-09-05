@@ -228,53 +228,30 @@ public Period(String start_date,int day){
 
 //calculate cycleLength
     //original
+    //header public method return nothing. nama method CalculateCycleLength,method
+    //receive 1 paramaeter of obj dri class Period. mewakili period seterusnya
+
     public void CalculateCycleLength(Period nextPeriod){
 
         //declare variable assign -1
-        cycleLength = -1;
+        //cycleLength = -1; //-ni attribute bukan variable.
+
+        //guna utk kiraan cycle length.
         if(date_start != null && nextPeriod !=null){
-            Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);
-            cycleLength = days.getDays();
+
+            //Days days = Days.daysBetween(nextPeriod.date_start,this.date_start);
+            //cycleLength = days.getDays();
+            //cycleLength = Math.abs(cycleLength);
+            //ganti balik
+
+            //5/9
+            Days days = Days.daysBetween(nextPeriod.getDate_start(), this.getDate_start());
+            int calculatedCycleLength = Math.abs(days.getDays());
+            this.cycleLength = calculatedCycleLength;
             cycleLength = Math.abs(cycleLength);
 
-
-            //tambahan average
-            if (cycleLength != -1) {
-                totalCycleLength += cycleLength;
-                cycleCount++;
-
-            }
-
         }
 
-    }
-
-    //tambahan average
-    public double calculateAverageCycleLength(List<Period> periods) {
-        int totalCycleLength = 0;
-        int cycleCount = 0;
-
-        for (int i = 0; i < periods.size() - 1; i++) {
-            Period currentPeriod = periods.get(i);
-            Period nextPeriod = periods.get(i + 1);
-
-            if (currentPeriod.getCycleLength() != -1 && nextPeriod.getCycleLength() != -1) {
-                totalCycleLength += currentPeriod.getCycleLength();
-                cycleCount++;
-            }
-        }
-
-        if (cycleCount == 0) {
-            return -1; // No data available
-        }
-
-        return (double) totalCycleLength / cycleCount;
-    }
-    public int getAverageCycleLength() {
-        if (cycleCount == 0) {
-            return -1; // No data available
-        }
-        return totalCycleLength / cycleCount;
     }
 
     public int getCycleCount() {

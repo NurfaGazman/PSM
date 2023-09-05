@@ -136,7 +136,7 @@ public class PeriodHistory extends AppCompatActivity {
 
                             }
 
-                           
+
 
                             for(int i=0; i<period.size()-1; i++){
                                 //get utk access specific
@@ -144,28 +144,56 @@ public class PeriodHistory extends AppCompatActivity {
 
                             }
 
-                            //tambahan average
-                            int totalAverageCycleLength = 0;
+                            //tamabahn baru 5/9
+                            //Calculate total cycle length, average cycle length, and total period length
+                            int totalCycleLength = 0;
                             int validPeriodCount = 0;
 
+                            for (int i = 0; i < period.size() - 1; i++) {
+                                period.get(i).CalculateCycleLength(period.get(i + 1));
+                                totalCycleLength += period.get(i).getCycleLength();
+                                validPeriodCount++;
+                            }
+
+                            int totalPeriodLength = 0;
+
                             for (Period p : period) {
-                                if (p.getCycleCount() > 0) {
-                                    totalAverageCycleLength += p.getAverageCycleLength();
-                                    validPeriodCount++;
+                                int periodLength = p.getPeriodLength();
+                                if (periodLength > 0) {
+                                    totalPeriodLength += periodLength;
                                 }
                             }
 
+                            int averagePeriodLength = 0;
                             if (validPeriodCount > 0) {
-                                int overallAverageCycleLength = totalAverageCycleLength / validPeriodCount;
-                                // Do something with the overallAverageCycleLength value
+                                averagePeriodLength = totalPeriodLength / validPeriodCount;
                             }
+
+
+
+
+//
+//                            //tambahan average
+//                            int totalAverageCycleLength;
+//                            int validPeriodCount;
+//                            int total =0 ;
+//                            for (Period p : period) {
+//                                if (p.getCycleCount() > 0) {
+//                                    totalAverageCycleLength += p.getCycleLength();
+//                                    validPeriodCount++;
+//                                }
+//                            }
+//
+//                            if (validPeriodCount > 0) {
+//                                int overallAverageCycleLength = totalAverageCycleLength / validPeriodCount;
+//                                // Do something with the overallAverageCycleLength value
+//                            }
 
 
 
                         Period Dummy = new Period();
                             Dummy.isHeader(true);
                             period.insertElementAt(Dummy,0);
-
                             periodController.notifyDataSetChanged();
 
                         } catch (JSONException e) {
