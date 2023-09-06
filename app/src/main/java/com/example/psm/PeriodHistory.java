@@ -136,8 +136,7 @@ public class PeriodHistory extends AppCompatActivity {
 
                             }
 
-
-
+                            //calculate cycle length and collect data
                             for(int i=0; i<period.size()-1; i++){
                                 //get utk access specific
                                 period.get(i).CalculateCycleLength(period.get(i+1));
@@ -146,29 +145,30 @@ public class PeriodHistory extends AppCompatActivity {
 
                             //tamabahn baru 5/9
                             //Calculate total cycle length, average cycle length, and total period length
+
                             int totalCycleLength = 0;
                             int validPeriodCount = 0;
 
                             for (int i = 0; i < period.size() - 1; i++) {
-                                period.get(i).CalculateCycleLength(period.get(i + 1));
+                                //period.get(i).CalculateCycleLength(period.get(i + 1));
                                 totalCycleLength += period.get(i).getCycleLength();
                                 validPeriodCount++;
                             }
 
-                            int totalPeriodLength = 0;
+                            //calculate average cycleLenght
+                            int averageCycleLength = 0;
 
-                            for (Period p : period) {
-                                int periodLength = p.getPeriodLength();
-                                if (periodLength > 0) {
-                                    totalPeriodLength += periodLength;
-                                }
-                            }
-
-                            int averagePeriodLength = 0;
                             if (validPeriodCount > 0) {
-                                averagePeriodLength = totalPeriodLength / validPeriodCount;
+                                averageCycleLength = totalCycleLength / validPeriodCount;
                             }
 
+                            //calculate total period length
+                            int totalPeriodLength = 0;
+                            for (Period p : period) {
+                               totalPeriodLength +=p.getPeriodLength();
+                            }
+
+                            //totalcyclelength,average cycle length, totalperiodlenght calculation 
 
 
 

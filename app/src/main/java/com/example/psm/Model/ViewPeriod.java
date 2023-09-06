@@ -27,6 +27,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
 
     public void ListPeriod(Period period){
 
+
         if(period.isHeader()){
 
             Start.setText("Start Date");
@@ -35,12 +36,14 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
             cycleList.setText("Cycle Length");
 
             //display data
+
         }else{
 
             Start.setText(period.getStart_date());
             End.setText(period.getEnd_date());
-            cycleList.setText("0");
 
+            //Period_Lenght.
+            cycleList.setText("0");
             if(period.getCycleLength()==-1){
                 //xdak data
                 cycleList.setText("No Data");
@@ -48,31 +51,13 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
                 //ad data masuk
                 //method chaning
                 cycleList.setText(String.valueOf(period.getCycleLength()));
-
-                total += period.getCycleLength();
-                count ++;
-
             }
 
             String s = String.valueOf(period.getPeriodLength());
             PeriodList.setText(s);
-
-
-            //tambahan average
-            // Calculate and display average cycle length
-            if (period.getCycleCount() > 0) {
-                int averageCycleLength = period.getCycleLength();
-                if (averageCycleLength != -1) {
-                    cycleList.setText(String.valueOf(averageCycleLength));
-                }
-                //tambahan average
-            }else{
-                int average = total / count;
-                cycleList.setText("Average : "+average);
-
-            }
-
         }
 
     }
 }
+
+
