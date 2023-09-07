@@ -139,6 +139,7 @@ public class PeriodHistory extends AppCompatActivity {
                             //calculate cycle length and collect data
                             for(int i=0; i<period.size()-1; i++){
                                 //get utk access specific
+                                // panggil the CalculateCycleLength method with the current and next period.
                                 period.get(i).CalculateCycleLength(period.get(i+1));
 
                             }
@@ -152,23 +153,25 @@ public class PeriodHistory extends AppCompatActivity {
                             for (int i = 0; i < period.size() - 1; i++) {
                                 //period.get(i).CalculateCycleLength(period.get(i + 1));
                                 totalCycleLength += period.get(i).getCycleLength();
+                                //tambah bilangan
                                 validPeriodCount++;
                             }
 
                             //calculate average cycleLenght
                             int averageCycleLength = 0;
-
+                            // elak bahagi by zero by checking if there are valid periods
                             if (validPeriodCount > 0) {
                                 averageCycleLength = totalCycleLength / validPeriodCount;
                             }
-
+                            // Calculate the total period length by summing the period lengths
+                            // of all elements in the 'period' list
                             //calculate total period length
                             int totalPeriodLength = 0;
                             for (Period p : period) {
                                totalPeriodLength +=p.getPeriodLength();
                             }
 
-                            //totalcyclelength,average cycle length, totalperiodlenght calculation 
+                            //totalcyclelength,average cycle length, totalperiodlenght calculation
 
 
 
