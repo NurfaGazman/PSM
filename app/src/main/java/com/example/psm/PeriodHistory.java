@@ -159,26 +159,20 @@ public class PeriodHistory extends AppCompatActivity {
 
                             //calculate average cycleLenght
 
-                            int totalAverageCycleLength = 0;
-                            if(validPeriodCount >0){
-                                totalAverageCycleLength = totalCycleLength /validPeriodCount;
+                            int averageCycleLength = 0;
+                            // elak bahagi by zero by checking if there are valid periods
+                            if (validPeriodCount > 0) {
+                                averageCycleLength = totalCycleLength / validPeriodCount;
                             }
-                            Log.d("TotalAverageCycleLength", "Total Average Cycle Length: " + totalAverageCycleLength);
+                            Log.d("AverageCycleLength", "Average Cycle Length: " + averageCycleLength);
 
-
-//                            int averageCycleLength = 0;
-//                            // elak bahagi by zero by checking if there are valid periods
-//                            if (validPeriodCount > 0) {
-//                                averageCycleLength = totalCycleLength / validPeriodCount;
-//                            }
-//                            Log.d("AverageCycleLength", "Average Cycle Length: " + averageCycleLength);
-//
 //
 //                            int totalPeriodLength = 0;
 //                            for (Period p : period) {  //// Retrieve period length of the current 'Period' object 'p'
 //                               totalPeriodLength +=p.getPeriodLength();
 //
 //                            }
+
                             //Log.d("TotalAverageCycleLength", "Total Average Cycle Length: " + totalAverageCycleLength);
                             //totalcyclelength,average cycle length, totalperiodlenght calculation
 
