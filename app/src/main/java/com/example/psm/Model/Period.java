@@ -34,7 +34,7 @@ public class Period extends Row {
     private int cycleLength;
 
     //tambhan utk average
-    private int totalCycleLength;
+    //private int totalCycleLength;
     private int cycleCount;
 
 

@@ -46,6 +46,8 @@ public class PeriodHistory extends AppCompatActivity {
     private Vector<Period> period;
     private PeriodController periodController;
 
+    public static int averageCycleLength = -1;
+
     //display data
 
     @Override
@@ -70,11 +72,14 @@ public class PeriodHistory extends AppCompatActivity {
             public void clickPeriod(Period period) {
               Intent editPeriod = new Intent(PeriodHistory.this,InsertPeriod.class);
               editPeriod.putExtra("period_Id",period.getPeriod_Id());
-//                //tambah sini 15/8
+                //tambah sini 15/8
                 startActivity(editPeriod);
 
             }
         });
+
+    //average
+        periodController.setAverageCycleLength(averageCycleLength); // Pass the averageCycleLength
 
         //requestQueue.add(requestController);
         binding.listPeriod.setAdapter(periodController);
@@ -96,8 +101,6 @@ public class PeriodHistory extends AppCompatActivity {
 
         period.clear();
 
-        ViewPeriod.total=0;
-        ViewPeriod.count=0;
 
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period" , null, token,
@@ -133,7 +136,6 @@ public class PeriodHistory extends AppCompatActivity {
                                 period.add(periodList);
 
 
-
                             }
 
                             //calculate cycle length and collect data
@@ -159,42 +161,16 @@ public class PeriodHistory extends AppCompatActivity {
 
                             //calculate average cycleLenght
 
-                            int averageCycleLength = 0;
+                            //int averageCycleLength = 0;
                             // elak bahagi by zero by checking if there are valid periods
                             if (validPeriodCount > 0) {
                                 averageCycleLength = totalCycleLength / validPeriodCount;
+                            }else {
+                                averageCycleLength = 0; // Set it to 0 when there are no valid periods
                             }
-                            Log.d("AverageCycleLength", "Average Cycle Length: " + averageCycleLength);
-
-//
-//                            int totalPeriodLength = 0;
-//                            for (Period p : period) {  //// Retrieve period length of the current 'Period' object 'p'
-//                               totalPeriodLength +=p.getPeriodLength();
-//
-//                            }
-
-                            //Log.d("TotalAverageCycleLength", "Total Average Cycle Length: " + totalAverageCycleLength);
-                            //totalcyclelength,average cycle length, totalperiodlenght calculation
-
-
-
-//
-//                            //tambahan average
-//                            int totalAverageCycleLength;
-//                            int validPeriodCount;
-//                            int total =0 ;
-//                            for (Period p : period) {
-//                                if (p.getCycleCount() > 0) {
-//                                    totalAverageCycleLength += p.getCycleLength();
-//                                    validPeriodCount++;
-//                                }
-//                            }
-//
-//                            if (validPeriodCount > 0) {
-//                                int overallAverageCycleLength = totalAverageCycleLength / validPeriodCount;
-//                                // Do something with the overallAverageCycleLength value
-//                            }
-
+                            // Update the PeriodController with the calculated average cycle length
+                            periodController.setAverageCycleLength(averageCycleLength);
+//                            Log.d("AverageCycleLength", "Average Cycle Length: " + averageCycleLength);
 
 
                         Period Dummy = new Period();
