@@ -69,7 +69,7 @@
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Current Day in Cycle"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColorHint="#4D000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
@@ -85,7 +85,7 @@
         android:ems="10"
         android:fontFamily="serif"
         android:hint="Current of Period"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:textColor="#000000"
         android:textColorHint="#4D000000"
         android:textSize="17sp"
@@ -126,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/UpcomingPeriodDashboard" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName8"
+        android:id="@+id/PeriodDashboard"
         android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_marginTop="15dp"

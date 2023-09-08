@@ -83,7 +83,6 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
 
 
 
-
     @Override
     public int getItemCount()
     {
