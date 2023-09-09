@@ -24,6 +24,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
         this.averageCycleLength = averageCycleLength; // Initialize averageCycleLength
     }
 
+
 //    public void ListPeriod(Period period) {
 //        if (period.isHeader()) {
 //            Start.setText("Start Date");

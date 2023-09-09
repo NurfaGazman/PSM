@@ -93,7 +93,6 @@ public class PeriodHistory extends AppCompatActivity {
         Intent intent = new Intent(PeriodHistory.this, InsertPeriod.class);  //panggilPage
         startActivity(intent);
 
-
     }
 
 
@@ -170,7 +169,7 @@ public class PeriodHistory extends AppCompatActivity {
                             }
                             // Update the PeriodController with the calculated average cycle length
                             periodController.setAverageCycleLength(averageCycleLength);
-//                            Log.d("AverageCycleLength", "Average Cycle Length: " + averageCycleLength);
+
 
 
                         Period Dummy = new Period();
@@ -191,6 +190,7 @@ public class PeriodHistory extends AppCompatActivity {
 
         requestQueue.add(requestController);
     }
+
 
     @Override
     protected void onStart() {

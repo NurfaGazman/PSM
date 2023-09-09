@@ -256,17 +256,6 @@
                 app:layout_constraintStart_toStartOf="@+id/vh2"
                 tools:layout_editor_absoluteY="528dp" />
 
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:fontFamily="@font/poppins_bold"
-                android:text="Watch the video"
-                android:textAlignment="center"
-                android:textColor="#E91E63"
-                android:textSize="25dp" />
-
         </LinearLayout>
 
     </ScrollView>
