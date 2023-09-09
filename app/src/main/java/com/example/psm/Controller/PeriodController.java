@@ -28,8 +28,6 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     private int averageCycleLength = 0;
 
 
-
-
     public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
         this.periods = periods;

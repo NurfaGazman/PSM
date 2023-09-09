@@ -35,21 +35,21 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.82" />
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="0dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView30"
-        tools:srcCompat="@tools:sample/avatars" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView6"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="185dp"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/vh1"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/vh2"-->
+<!--        tools:layout_editor_absoluteY="109dp"-->
+<!--        tools:srcCompat="@tools:sample/avatars" />-->
 
     <TextView
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         android:fontFamily="serif-bold"
         android:text="Period Dashboard"
         android:textAlignment="center"
@@ -64,7 +64,7 @@
         android:id="@+id/currentDayDashboard"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -81,7 +81,7 @@
         android:id="@+id/CurrentPeriodDashboard"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -99,7 +99,7 @@
         android:id="@+id/UpcomingPeriodDashboard"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -116,7 +116,7 @@
         android:id="@+id/LengthDashboard"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -128,23 +128,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
-
-    <EditText
-        android:id="@+id/PeriodDashboard"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corner"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Period Length"
-        android:inputType="textPersonName"
-        android:textColorHint="#4D000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/CurrentPeriodDashboard" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnHistory"
@@ -163,27 +146,28 @@
         android:id="@+id/textView32"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="150dp"
+        android:fontFamily="serif"
         android:text="Current Of Period"
         android:textColor="#000000"
         android:textSize="17sp"
-        android:fontFamily="serif"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
     <TextView
         android:id="@+id/textView34"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="serif"
         android:text="Next Period"
         android:textColor="#000000"
         android:textSize="17sp"
-        android:fontFamily="serif"
-        app:layout_constraintBottom_toTopOf="@+id/LengthDashboard"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/PeriodDashboard" />
+        app:layout_constraintTop_toBottomOf="@+id/CurrentPeriodDashboard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,10 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -29,9 +31,6 @@ public class PeriodDashboard extends AppCompatActivity {
     private RequestQueue requestQueue;
     private SweetAlert swal;
     private DatePickerDialog datePickerDialog;
-
-    private int periodLength;
-
 
 
     @Override
@@ -74,6 +73,8 @@ public class PeriodDashboard extends AppCompatActivity {
         TextView currentDayTextView = findViewById(R.id.currentDayDashboard);
         currentDayTextView.setText("" + currentDayInPeriod + " days left");
 
+//        TextView periodLengthTextView = findViewById(R.id.PeriodDashboard);
+//        periodLengthTextView.setText("Period Length : " + );
     }
 
 

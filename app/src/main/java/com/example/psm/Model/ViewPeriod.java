@@ -13,6 +13,7 @@ public class ViewPeriod extends RecyclerView.ViewHolder {
     //display data
     private final int averageCycleLength; // Add this variable
 
+
     public ViewPeriod(@NonNull View itemView, int averageCycleLength) { // Modify the constructor
         super(itemView);
 
