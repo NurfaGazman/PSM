@@ -23,31 +23,31 @@
             android:layout_height="wrap_content">
 
 
-  <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-      android:id="@+id/calendarView"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:mcv_selectionColor="#00F"
-      app:mcv_showOtherDates="all"
-      tools:layout="@layout/empty"></com.prolificinteractive.materialcalendarview.MaterialCalendarView>
-
-<!--
-
-            <ImageView
-                android:id="@+id/placeholder"
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
-                android:layout_height="500dp"
-                android:layout_marginTop="56dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
--->
+                app:mcv_selectionColor="#00F"
+                app:mcv_showOtherDates="all"
+                tools:layout="@layout/empty"></com.prolificinteractive.materialcalendarview.MaterialCalendarView>
+
+            <!--
+
+                        <ImageView
+                            android:id="@+id/placeholder"
+                            android:layout_width="match_parent"
+                            android:layout_height="500dp"
+                            android:layout_marginTop="56dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.498"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_launcher_background" />
+            -->
             <EditText
                 android:id="@+id/period_lenght"
                 android:layout_width="wrap_content"
@@ -58,7 +58,9 @@
                 android:ems="10"
                 android:hint="Period Lenght"
                 android:inputType="number"
-                android:textColorHint="#4DFFFFFF"
+                android:textColorHint="#4D000000"
+                android:textSize="18sp"
+                android:fontFamily="serif-bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView17"
@@ -66,7 +68,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/cycyle_lenght"
+                android:id="@+id/cyclelenght"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -87,8 +89,8 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="60dp"
                 android:text="Period Lenght"
+                android:fontFamily="serif-bold"
                 android:textColor="#000000"
-                android:textColorHint="#000000"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/calendarView"
@@ -101,6 +103,7 @@
                 android:layout_marginStart="20dp"
                 android:text="Cycle Lenght"
                 android:textColor="#000000"
+                android:fontFamily="serif-bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView17"

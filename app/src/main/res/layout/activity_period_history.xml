@@ -50,47 +50,39 @@
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toTopOf="@+id/vh4" />
 
-    <ImageView
-        android:id="@+id/imageView8"
-        android:layout_width="0dp"
-        android:layout_height="185dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView31"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <TextView
         android:id="@+id/textView33"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="serif"
-        android:text="List "
+        android:text="List Of Period "
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
 
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toTopOf="@+id/vh3"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/textView33"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints">
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/listPeriod"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_height="130dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/vh1"
             app:layout_constraintHorizontal_bias="0.0"
@@ -107,7 +99,8 @@
         android:layout_height="0dp"
         tools:layout="@layout/empty"
         tools:ignore="MissingConstraints" />
-    
+
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnNewRecord"
         android:layout_width="wrap_content"

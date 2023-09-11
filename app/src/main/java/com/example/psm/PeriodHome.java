@@ -53,6 +53,7 @@ public class PeriodHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         binding = ActivityPeriodHomeBinding.inflate(getLayoutInflater());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
         setContentView(binding.getRoot());
 
         SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
@@ -63,7 +64,7 @@ public class PeriodHome extends AppCompatActivity {
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
         binding.periodLenght.setText("7");
-        binding.cycyleLenght.setText("28");
+        binding.cyclelenght.setText("28");
 
         binding.calendarView.setOnDateLongClickListener(
                 new OnDateLongClickListener() {

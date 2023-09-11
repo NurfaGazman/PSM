@@ -65,7 +65,7 @@ public class PeriodHistory extends AppCompatActivity {
         token = sharedPreferences.getString("token",null);
 
         period = new Vector<>();
-        binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
+        //binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
 
         periodController = new PeriodController(getLayoutInflater(), period, new PeriodClick() {
             @Override
@@ -86,7 +86,7 @@ public class PeriodHistory extends AppCompatActivity {
         binding.listPeriod.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         //tambahan 16/8
-          binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
+        binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
     }
 
         public void goToNewRecord(View view){

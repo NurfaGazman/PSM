@@ -49,7 +49,7 @@
         android:id="@+id/textView30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="serif-bold"
         android:text="Period Dashboard"
         android:textAlignment="center"
@@ -63,8 +63,8 @@
     <EditText
         android:id="@+id/currentDayDashboard"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -80,8 +80,8 @@
     <EditText
         android:id="@+id/CurrentPeriodDashboard"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -98,8 +98,8 @@
     <EditText
         android:id="@+id/UpcomingPeriodDashboard"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -115,8 +115,8 @@
     <EditText
         android:id="@+id/LengthDashboard"
         android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
         android:fontFamily="serif"
@@ -129,32 +129,32 @@
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:clickable="true"
-        app:backgroundTint="#FE2147"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/loop" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/btnHistory"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:clickable="true"-->
+<!--        app:backgroundTint="#FE2147"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:srcCompat="@drawable/loop" />-->
 
     <TextView
         android:id="@+id/textView32"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="serif"
         android:text="Current Of Period"
         android:textColor="#000000"
         android:textSize="17sp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+        app:layout_constraintTop_toBottomOf="@+id/BtnInsert" />
 
     <TextView
         android:id="@+id/textView34"
@@ -169,5 +169,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/CurrentPeriodDashboard" />
+
+    <Button
+        android:id="@+id/BtnCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="View Calendar"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <Button
+        android:id="@+id/BtnHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="History Of Period"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/BtnCalendar" />
+
+    <Button
+        android:id="@+id/BtnInsert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Insert Period"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintStart_toStartOf="@+id/vh2"
+        app:layout_constraintTop_toBottomOf="@+id/BtnHistory" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

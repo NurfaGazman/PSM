@@ -48,7 +48,7 @@ public class ManagedProfile extends AppCompatActivity {
         binding = ActivityManagedProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
-        binding.btnSave.setBackgroundColor(Color.parseColor("#F42B82"));  //color button
+        binding.btnSave.setBackgroundColor(Color.parseColor("#db5a6b"));  //color button
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
 
         swal=new SweetAlert();

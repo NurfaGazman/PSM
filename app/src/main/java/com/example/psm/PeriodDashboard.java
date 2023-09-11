@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
@@ -41,9 +42,14 @@ public class PeriodDashboard extends AppCompatActivity {
         binding = ActivityPeriodDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
-        binding.btnHistory.setOnClickListener(this::goToHistory);
+        binding.BtnHistory.setOnClickListener(this::goToHistory);
+        binding.BtnCalendar.setOnClickListener(this::goToPeriod);
+        binding.BtnInsert.setOnClickListener((this::goToInsert));
 
 
+        binding.BtnCalendar.setBackgroundColor(Color.parseColor("#F42B82"));
+        binding.BtnHistory.setBackgroundColor(Color.parseColor("#F42B82"));
+        binding.BtnInsert.setBackgroundColor(Color.parseColor("#F42B82"));
 
         //tambahan predict
         //get current date
@@ -80,7 +86,7 @@ public class PeriodDashboard extends AppCompatActivity {
 
     private int calculateCurrentDayInPeriod(LocalDate currentDate, LocalDate predictedStartDate) {
         // Calculate the number of days between the current date and the predicted start date
-        int currentDayInPeriod = Days.daysBetween(predictedStartDate, currentDate).getDays();
+        int currentDayInPeriod = Days.daysBetween( currentDate , predictedStartDate).getDays();
         // Add 1 to make it 1-based instead of 0-based
         return currentDayInPeriod + 1;
     }
@@ -90,5 +96,14 @@ public class PeriodDashboard extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void goToPeriod(View view){
+        Intent intent = new Intent(PeriodDashboard.this, PeriodHome.class);  //panggilPage
+        startActivity(intent);
+    }
+
+    public void goToInsert(View view){
+        Intent intent = new Intent(PeriodDashboard.this, InsertPeriod.class);  //panggilPage
+        startActivity(intent);
+    }
 
 }
