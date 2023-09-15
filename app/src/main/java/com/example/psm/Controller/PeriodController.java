@@ -25,8 +25,6 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
     private final Vector<Period> periods;
     private PeriodClick periodClick = null;
 
-    private int averageCycleLength = 0;
-
 
     public PeriodController(LayoutInflater layoutInflater, Vector<Period> periods, PeriodClick periodClick) {
         this.layoutInflater = layoutInflater;
@@ -34,30 +32,13 @@ public class PeriodController extends RecyclerView.Adapter<ViewPeriod> {
         this.periodClick = periodClick;
     }
 
-    //tambhan utk average
-    // Add this method to update the averageCycleLength
-    public void setAverageCycleLength(int averageCycleLength) {
-        this.averageCycleLength = averageCycleLength;
-        notifyDataSetChanged();
-    }
-
-//    @NonNull
-//    @Override
-//    public ViewPeriod onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        return new ViewPeriod(layoutInflater.inflate(R.layout.period_item,parent,false));
-//
-//    }
 
     @NonNull
     @Override
     public ViewPeriod onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Pass averageCycleLength as a parameter when creating ViewPeriod
-        return new ViewPeriod(layoutInflater.inflate(R.layout.period_item, parent, false), averageCycleLength);
+        return new ViewPeriod(layoutInflater.inflate(R.layout.period_item, parent, false));
     }
-
-
-
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewPeriod holder, int position) {

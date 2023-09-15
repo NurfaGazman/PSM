@@ -63,7 +63,7 @@ public class PeriodHome extends AppCompatActivity {
 
         swal=new SweetAlert();
         getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
-        binding.periodLenght.setText("7");
+        binding.periodLenght.setText("0");
         binding.cyclelenght.setText("28");
 
         binding.calendarView.setOnDateLongClickListener(
@@ -73,8 +73,6 @@ public class PeriodHome extends AppCompatActivity {
                         //DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                         //selectedDate.toString();
                         LocalDate date = new LocalDate(selectedDate.getYear(),selectedDate.getMonth(),selectedDate.getDay());
-
-
                        Period selectedPeriod = dbCalander(selectedDate);
                        if(selectedPeriod != null){
                            //klu user select range yang ad period
@@ -236,7 +234,6 @@ public class PeriodHome extends AppCompatActivity {
         for(Period period : periodList){
             binding.calendarView.addDecorator(period.getDecorator());
         }
-
     }
     //update period kt database
     public void updatePeriod(Period period){
@@ -299,7 +296,6 @@ public class PeriodHome extends AppCompatActivity {
 
             body.put("start_date",period.getStart_date());
             body.put("end_date",period.getEnd_date());
-
 
 
             RequestController requestController = new RequestController(Request.Method.POST,

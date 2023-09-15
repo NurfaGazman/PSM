@@ -34,7 +34,7 @@ public class Period extends Row {
     private int cycleLength;
 
     //tambhan utk average
-    //private int totalCycleLength;
+    private int totalCycleLength;
     private int cycleCount;
 
 
@@ -46,13 +46,14 @@ public class Period extends Row {
     public Period(){ //constructor
 
         //default value utk tau ni bukan dari database
-
         period_Id = -1;  //variable
         cycleLength = -1;
 
     }
 
-public Period(String start_date,int day){
+
+
+    public Period(String start_date,int day){
     setStart_date(start_date); //panggil method
     setEnd_date(date_start.plusDays(day).toString("yyyy-MM-dd"));
 
@@ -217,8 +218,11 @@ public Period(String start_date,int day){
             length = days.getDays();
             length = Math.abs(length)+1;
 
+
+
         }
-        return length;
+            return length;
+
     }
 
     public int getCycleLength(){
@@ -244,15 +248,18 @@ public Period(String start_date,int day){
             //cycleLength = Math.abs(cycleLength);
             //ganti balik
 
-            //5/9
+//            //5/9
             Days days = Days.daysBetween(nextPeriod.getDate_start(), this.getDate_start());
             int calculatedCycleLength = Math.abs(days.getDays());
             this.cycleLength = calculatedCycleLength;
             cycleLength = Math.abs(cycleLength);
 
+
         }
 
     }
+
+
 
     public int getCycleCount() {
         return cycleCount;

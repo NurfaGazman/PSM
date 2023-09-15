@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,11 +31,15 @@ import com.example.psm.databinding.ActivityPeriodHistoryBinding;
 import com.example.psm.databinding.ActivityPeriodHomeBinding;
 
 import org.jetbrains.annotations.Nullable;
+import org.joda.time.Days;
 import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -44,42 +50,46 @@ public class PeriodHistory extends AppCompatActivity {
     private RequestQueue requestQueue;
     private SweetAlert swal;
     private Vector<Period> period;
-    private PeriodController periodController;
+    private PeriodController periodController; //recycle view
 
-    public static int averageCycleLength = -1;
 
+    //static ambik dri class
     //display data
+
+    //No data sebb xdak kena mengena dgn average . duduk kt dashboard
+    //cyclength kira start dgn start period date
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         binding = ActivityPeriodHistoryBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
 
-        requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
-        swal=new SweetAlert();
-        getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(),swal).commit();
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        swal = new SweetAlert();
+        getSupportFragmentManager().beginTransaction().replace(binding.frgSwal.getId(), swal).commit();
 
-        SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
-        token = sharedPreferences.getString("token",null);
+        SharedPreferences sharedPreferences = getSharedPreferences("PSM", Context.MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
 
         period = new Vector<>();
         //binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
 
+
         periodController = new PeriodController(getLayoutInflater(), period, new PeriodClick() {
             @Override
             public void clickPeriod(Period period) {
-              Intent editPeriod = new Intent(PeriodHistory.this,InsertPeriod.class);
-              editPeriod.putExtra("period_Id",period.getPeriod_Id());
+                Intent editPeriod = new Intent(PeriodHistory.this, InsertPeriod.class);
+                editPeriod.putExtra("period_Id", period.getPeriod_Id());
                 //tambah sini 15/8
                 startActivity(editPeriod);
 
             }
         });
 
-    //average
-        periodController.setAverageCycleLength(averageCycleLength); // Pass the averageCycleLength
 
         //requestQueue.add(requestController);
         binding.listPeriod.setAdapter(periodController);
@@ -87,19 +97,21 @@ public class PeriodHistory extends AppCompatActivity {
 
         //tambahan 16/8
         binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
+
+
     }
 
-        public void goToNewRecord(View view){
+    public void goToNewRecord(View view){
         Intent intent = new Intent(PeriodHistory.this, InsertPeriod.class);  //panggilPage
         startActivity(intent);
 
     }
 
-
     public void loadList(){
 
-        period.clear();
-
+        period.clear(); // obj class daripada vector = collection od data. jenis Period .
+        //tujuan ambik data pastu simpan data
+        //dynamic array sebb tu pakai vertor.
 
         RequestController requestController = new RequestController(Request.Method.GET,
                 "/api/Period" , null, token,
@@ -114,8 +126,9 @@ public class PeriodHistory extends AppCompatActivity {
                             Log.d("Test",""+jsonArray.length());
 
 
+
                             for(int i=0; i <jsonArray.length(); i ++) {
-                                Log.d("Test", "" + i);
+                                //Log.d("Test", "" + i);
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
 
                                 Period periodList = new Period();
@@ -134,7 +147,6 @@ public class PeriodHistory extends AppCompatActivity {
 
                                 period.add(periodList);
 
-
                             }
 
                             //calculate cycle length and collect data
@@ -145,37 +157,12 @@ public class PeriodHistory extends AppCompatActivity {
 
                             }
 
-                            //tamabahn baru 5/9
-                            //Calculate total cycle length, average cycle length, and total period length
 
-                            int totalCycleLength = 0;
-                            int validPeriodCount = 0;
-
-                            for (int i = 0; i < period.size() - 1; i++) {
-                                //period.get(i).CalculateCycleLength(period.get(i + 1));
-                                totalCycleLength += period.get(i).getCycleLength();
-                                //tambah bilangan
-                                validPeriodCount++;
-                            }
-
-                            //calculate average cycleLenght
-
-                            //int averageCycleLength = 0;
-                            // elak bahagi by zero by checking if there are valid periods
-                            if (validPeriodCount > 0) {
-                                averageCycleLength = totalCycleLength / validPeriodCount;
-                            }else {
-                                averageCycleLength = 0; // Set it to 0 when there are no valid periods
-                            }
-                            // Update the PeriodController with the calculated average cycle length
-                            periodController.setAverageCycleLength(averageCycleLength);
-
-
-
-                        Period Dummy = new Period();
+                            Period Dummy = new Period();
                             Dummy.isHeader(true);
                             period.insertElementAt(Dummy,0);
                             periodController.notifyDataSetChanged();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -196,8 +183,6 @@ public class PeriodHistory extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         loadList();
-
-
 
     }
 }

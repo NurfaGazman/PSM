@@ -2,203 +2,172 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PeriodL"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
     tools:context=".PeriodDashboard">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vh2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.18" />
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView6"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="185dp"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/vh1"-->
+    <!--        app:layout_constraintHorizontal_bias="1.0"-->
+    <!--        app:layout_constraintStart_toStartOf="@+id/vh2"-->
+    <!--        tools:layout_editor_absoluteY="109dp"-->
+    <!--        tools:srcCompat="@tools:sample/avatars" />-->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vh3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/btnHistory"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:clickable="true"-->
+    <!--        app:backgroundTint="#FE2147"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:srcCompat="@drawable/loop" />-->
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vh4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/vh1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.82" />
-
-<!--    <ImageView-->
-<!--        android:id="@+id/imageView6"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="185dp"-->
-<!--        app:layout_constraintEnd_toStartOf="@+id/vh1"-->
-<!--        app:layout_constraintHorizontal_bias="1.0"-->
-<!--        app:layout_constraintStart_toStartOf="@+id/vh2"-->
-<!--        tools:layout_editor_absoluteY="109dp"-->
-<!--        tools:srcCompat="@tools:sample/avatars" />-->
-
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:fontFamily="serif-bold"
-        android:text="Period Dashboard"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toTopOf="@+id/vh4" />
-
-    <EditText
-        android:id="@+id/currentDayDashboard"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corner"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Current Day in Cycle"
-        android:inputType="number"
-        android:textColorHint="#4D000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/LengthDashboard" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <EditText
-        android:id="@+id/CurrentPeriodDashboard"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corner"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Current of Period"
-        android:inputType="number"
-        android:textColor="#000000"
-        android:textColorHint="#4D000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/UpcomingPeriodDashboard"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corner"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Upcoming of Period"
-        android:inputType="textPersonName"
-        android:textColorHint="#4D000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/currentDayDashboard" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vh2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.18" />
 
-    <EditText
-        android:id="@+id/LengthDashboard"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_corner"
-        android:ems="10"
-        android:fontFamily="serif"
-        android:hint="Cycle Length"
-        android:inputType="textPersonName"
-        android:textColorHint="#4D000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vh3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.95" />
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/btnHistory"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:clickable="true"-->
-<!--        app:backgroundTint="#FE2147"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:srcCompat="@drawable/loop" />-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vh4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
 
-    <TextView
-        android:id="@+id/textView32"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="serif"
-        android:text="Current Of Period"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/BtnInsert" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vh1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.82" />
 
-    <TextView
-        android:id="@+id/textView34"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:fontFamily="serif"
-        android:text="Next Period"
-        android:textColor="#000000"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/CurrentPeriodDashboard" />
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="serif-bold"
+                android:text="Period Dashboard"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/vh1"
+                app:layout_constraintStart_toStartOf="@+id/vh2"
+                app:layout_constraintTop_toTopOf="@+id/vh4" />
 
-    <Button
-        android:id="@+id/BtnCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="View Calendar"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView30"
+                app:mcv_selectionColor="#00F"
+                app:mcv_showOtherDates="all"
+                tools:layout="@layout/empty" />
 
-    <Button
+
+            <EditText
+                android:id="@+id/UpcomingPeriodDashboard"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_corner"
+                android:ems="10"
+                android:fontFamily="serif"
+                android:hint="Upcoming of Period"
+                android:inputType="textPersonName"
+                android:textColorHint="#4D000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/vh1"
+                app:layout_constraintStart_toStartOf="@+id/vh2"
+                app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+            <EditText
+                android:id="@+id/LengthDashboard"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/rounded_corner"
+                android:ems="10"
+                android:fontFamily="serif"
+                android:hint="Cycle Length"
+                android:inputType="textPersonName"
+                android:textColorHint="#4D000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/vh1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/vh2"
+                app:layout_constraintTop_toBottomOf="@+id/PeriodLength" />
+
+            <EditText
+                android:id="@+id/PeriodLength"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded_corner"
+                android:ems="10"
+                android:fontFamily="serif"
+                android:hint="Period Length"
+                android:inputType="text"
+                android:textColorHint="#4D000000"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/vh1"
+                app:layout_constraintStart_toStartOf="@+id/vh2"
+                app:layout_constraintTop_toBottomOf="@+id/UpcomingPeriodDashboard" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/PeriodLength" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/BtnHistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="History Of Period"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/BtnCalendar" />
-
-    <Button
-        android:id="@+id/BtnInsert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Insert Period"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintStart_toStartOf="@+id/vh2"
-        app:layout_constraintTop_toBottomOf="@+id/BtnHistory" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        app:backgroundTint="#FE2147"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/dashboards" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
