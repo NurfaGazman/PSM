@@ -202,6 +202,7 @@ public class Period extends Row {
  public int getPeriodLength (){
         //length define variable , type int kalau data xkira store dia akan return -1. sebb tu guna -1.
         //kalau ad kiraan akan berubah data, klau xdak, akan return -1
+
         int length = -1;
 
         if(date_start != null && date_end != null){

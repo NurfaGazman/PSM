@@ -21,6 +21,7 @@ public class RequestController extends StringRequest {
 
 //server URL ikut ipv4 (ipconfig) dlm cmd
     public static String serverUrl = "http://10.0.2.2:8080/PSM";// ip default test kt emulator
+
     //public static String serverUrl = "http://192.168.8.114:8080/PSM"; //check kt controlpanel
 
     //ip baru

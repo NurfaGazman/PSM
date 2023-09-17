@@ -15,6 +15,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -66,6 +67,7 @@ public class Login extends AppCompatActivity {
         binding.SignUp.setOnClickListener(this::SignUp);
         binding.ResetPass.setOnClickListener(this::ForgotPassword);
         requestQueue = Volley.newRequestQueue(getApplicationContext()) ;
+
 
 
         swal=new SweetAlert();
@@ -123,17 +125,18 @@ public class Login extends AppCompatActivity {
                     });
                 }
             }
-        });
 
+        });
+        
     }
 
-//function login
+    //function login
     public void fnLogin(View view) {
         if(binding.eeditTextTextEmail.getText().toString().isEmpty()||
                 binding.editTextTextPassword.getText().toString().isEmpty()
         )
         {
-          //messageBox
+            //messageBox
             new SweetAlertDialog(this,SweetAlertDialog.ERROR_TYPE)
                     .setTitleText("Invalid")
                     .setContentText("Please fill in all the field")
@@ -182,7 +185,7 @@ public class Login extends AppCompatActivity {
                         }
                     });
 
-                     requestQueue.add(requestController);
+            requestQueue.add(requestController);
 
 
         }

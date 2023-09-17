@@ -141,11 +141,11 @@
 
     <ImageView
         android:id="@+id/btnSound"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
+        android:layout_width="95dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/bordebwh"
-        app:layout_constraintEnd_toStartOf="@+id/vh1"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:srcCompat="@drawable/emergency" />
 
@@ -162,5 +162,19 @@
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+
+    <ImageView
+        android:id="@+id/btnCall"
+        android:layout_width="75dp"
+        android:layout_height="57dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/bordebwh"
+        app:layout_constraintEnd_toStartOf="@+id/vh1"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/btnSound"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/telephone" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

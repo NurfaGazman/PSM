@@ -3,9 +3,14 @@ package com.example.psm;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -99,6 +104,9 @@ public class PeriodHistory extends AppCompatActivity {
         binding.btnNewRecord.setOnClickListener(this::goToNewRecord);
 
 
+
+
+
     }
 
     public void goToNewRecord(View view){
@@ -148,15 +156,20 @@ public class PeriodHistory extends AppCompatActivity {
                                 period.add(periodList);
 
                             }
-
+                            int count = 0;
                             //calculate cycle length and collect data
                             for(int i=0; i<period.size()-1; i++){
                                 //get utk access specific
                                 // panggil the CalculateCycleLength method with the current and next period.
                                 period.get(i).CalculateCycleLength(period.get(i+1)); //pass the next period object 'period.get(i+1)
+                                count++;
 
                             }
 
+                            //Notification
+
+                            sendNotification("Period Tracker Notify","The latest period length is : "+period.get(count).getPeriodLength());
+                            //Toast.makeText(PeriodHistory.this, +"", Toast.LENGTH_SHORT).show();
 
                             Period Dummy = new Period();
                             Dummy.isHeader(true);
@@ -184,5 +197,39 @@ public class PeriodHistory extends AppCompatActivity {
         super.onStart();
         loadList();
 
+    }
+
+
+    //notification
+    private static final String CHANNEL_ID = "my_channel_id"; // Unique channel ID
+    private static final String CHANNEL_NAME = "My Channel"; // Channel name (visible to the user)
+    private static final int NOTIFICATION_ID = 1; // Unique notification ID
+
+    public void sendNotification(String title, String description) {
+        // Create a notification channel (required for Android 8.0 and above)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_HIGH);
+            channel.setShowBadge(true);
+
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create the notification
+        Notification notification = new Notification.Builder(this, CHANNEL_ID)
+                .setContentTitle(title)
+                .setContentText(description)
+                .setSmallIcon(R.drawable.logo) // Replace with your own icon
+                .setPriority(Notification.PRIORITY_HIGH)
+                .build();
+
+        // Send the notification
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 }

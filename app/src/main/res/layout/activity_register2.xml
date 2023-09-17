@@ -69,7 +69,7 @@
         android:fontFamily="serif-bold"
         android:text="Sign Up"
         android:textAlignment="center"
-        android:textColor="#E91E63"
+        android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/vh1"
         app:layout_constraintStart_toStartOf="@+id/vh2"
