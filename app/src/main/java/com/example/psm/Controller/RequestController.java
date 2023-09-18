@@ -25,7 +25,7 @@ public class RequestController extends StringRequest {
     //public static String serverUrl = "http://192.168.8.114:8080/PSM"; //check kt controlpanel
 
     //ip baru
-    //public static String serverUrl = "http://192.168.0.114:8080/PSM"; //check kt controlpanel
+    //public static String serverUrl = "http://192.168.0.110:8080/PSM"; //check kt controlpanel
 
     private JSONObject body; //
 

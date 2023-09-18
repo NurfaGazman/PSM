@@ -127,8 +127,17 @@ public class Login extends AppCompatActivity {
             }
 
         });
-        
-    }
+
+        binding.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = "999";
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phoneNumber));
+                startActivity(intent);
+            }
+        });
+     }
 
     //function login
     public void fnLogin(View view) {

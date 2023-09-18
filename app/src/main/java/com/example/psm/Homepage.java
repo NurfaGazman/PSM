@@ -67,8 +67,8 @@ public class Homepage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     //sampai sini
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
+//
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true); //backbutton
         SharedPreferences sharedPreferences = getSharedPreferences("PSM" , Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token",null);
         //ambil value dalam shared pref
